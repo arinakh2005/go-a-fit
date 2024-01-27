@@ -107,5 +107,8 @@
       }
     }
   },
-  "defaultProject": "go-a-fit-frontend"
+  "defaultProject": "go-a-fit-frontend",
+  "cli": {
+    "analytics": false
+  }
 }
