@@ -1,0 +1,16 @@
+<div class="card">
+  <p-menubar [model]="menuItems">
+    <ng-template pTemplate="start">
+      <div class="app-title">
+        <span class="app-title__first-part">GO/</span>
+        <span class="app-title__second-part">\FIT</span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="end">
+      <div class="search-block">
+        <i class="pi pi-search"></i>
+        <input type="text" pInputText  placeholder="Пошук" />
+      </div>
+    </ng-template>
+  </p-menubar>
+</div>
