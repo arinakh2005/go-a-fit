@@ -7,11 +7,14 @@ import { MenubarModule } from 'primeng/menubar';
 import { InputTextModule } from 'primeng/inputtext';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { StyleClassModule } from 'primeng/styleclass';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { ScheduleComponent } from './components/schedule/schedule.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuHeaderComponent
+    MenuHeaderComponent,
+    ScheduleComponent,
   ],
   imports: [
     BrowserModule,
@@ -20,6 +23,7 @@ import { StyleClassModule } from 'primeng/styleclass';
     InputTextModule,
     PanelMenuModule,
     StyleClassModule,
+    FullCalendarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

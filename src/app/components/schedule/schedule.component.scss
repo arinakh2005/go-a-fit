@@ -1,0 +1,10 @@
+.page {
+  margin: 1.5rem;
+}
+
+::ng-deep {
+  .fc .fc-toolbar-title,
+  .fc table tr {
+    color: var(--text-color);
+  }
+}

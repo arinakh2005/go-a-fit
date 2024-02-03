@@ -14,6 +14,7 @@ export class MenuHeaderComponent implements OnInit {
       {
         label: 'Головна',
         icon: PrimeIcons.HOME,
+        routerLink: '/',
       },
       {
         label: 'Тренування',
@@ -32,6 +33,7 @@ export class MenuHeaderComponent implements OnInit {
       {
         label: 'Розклад',
         icon: PrimeIcons.CALENDAR,
+        routerLink: '/schedule',
       },
       {
         label: 'Тренери',
