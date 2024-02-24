@@ -9,6 +9,7 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { StyleClassModule } from 'primeng/styleclass';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { ScheduleComponent } from './components/schedule/schedule.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     MenubarModule,
     InputTextModule,

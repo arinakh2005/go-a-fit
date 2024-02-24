@@ -7,4 +7,19 @@
   .fc table tr {
     color: var(--text-color);
   }
+
+  .bg-planned {
+    background-color: #DFE7FF;
+    color: var(--text-color);
+  }
+
+  .bg-cancelled {
+    background-color: #CBCBCB;
+    color: var(--text-color);
+  }
+
+  .bg-completed {
+    background-color: var(--teal-100);
+    color: var(--text-color);
+  }
 }
