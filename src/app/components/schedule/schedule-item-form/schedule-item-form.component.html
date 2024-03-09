@@ -67,18 +67,23 @@
     <label for="allDay">Увесь день</label>
   </div>
 
-  <div class="flex flex-row justify-content-end gap-2">
-    <p-button *ngIf="isNew" label="Створити" icon="pi pi-check" severity="success"
-              [outlined]="true"
-              (onClick)="onAdd()"
-    ></p-button>
-    <p-button  *ngIf="!isNew" label="Зберегти" icon="pi pi-check" severity="success"
-               [outlined]="true"
-               (onClick)="onUpdate()"
-    ></p-button>
-    <p-button label="Закрити" severity="secondary"
-              [outlined]="true"
-              (onClick)="byClose.emit()"
-    ></p-button>
+  <div class="flex flex-row justify-content-end mb-1">
+    <div *ngIf="isNew">
+      <p-button label="Створити" icon="pi pi-check" severity="success"
+                [raised]="true"
+                (onClick)="onAdd()"
+      ></p-button>
+    </div>
+
+    <div *ngIf="!isNew" class="card flex justify-content-center gap-1">
+      <p-button label="Зберегти" icon="pi pi-check" severity="success"
+                [raised]="true"
+                (onClick)="onUpdate()"
+      ></p-button>
+      <p-button label="Видалити" icon="pi pi-trash" severity="secondary"
+                [raised]="true"
+                (onClick)="onDelete()"
+      ></p-button>
+    </div>
   </div>
 </form>

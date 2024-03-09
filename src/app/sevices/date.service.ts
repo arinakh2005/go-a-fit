@@ -14,4 +14,12 @@ export class DateService {
 
     return `${day}/${month}/${year} ${hours}:${minutes}`;
   }
+
+  public static formatToISOString(stringToFormat: string): string {
+    const [datePart, timePart] = stringToFormat.split(' ');
+    const [day, month, year] = datePart.split('/');
+    const [hours, minutes] = timePart.split(':');
+
+    return `${year}-${month}-${day} ${hours}:${minutes}`;
+  }
 }

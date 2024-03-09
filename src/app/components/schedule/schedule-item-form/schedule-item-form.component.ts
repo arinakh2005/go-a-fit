@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ScheduleItem } from '../../../types/ScheduleItem';
 import { OccasionType } from '../../../enums/occasion-type';
@@ -10,7 +10,7 @@ import { GlobalService } from '../../../sevices/global.service';
   templateUrl: './schedule-item-form.component.html',
   styleUrl: './schedule-item-form.component.scss',
 })
-export class ScheduleItemFormComponent {
+export class ScheduleItemFormComponent implements OnChanges {
   @Input()
   public isNew: boolean = true;
   @Input()
@@ -22,6 +22,8 @@ export class ScheduleItemFormComponent {
   public byAdd = new EventEmitter<ScheduleItem>();
   @Output()
   public byUpdate = new EventEmitter<ScheduleItem>();
+  @Output()
+  public byDelete = new EventEmitter<string>();
 
   public form = this.formBuilder.group({
     title: [null, Validators.required],
@@ -56,14 +58,28 @@ export class ScheduleItemFormComponent {
 
   public onAdd(): void {
     const { end, start, title, isAllDay, occasionType, coachId, groupId, athleteId } = this.form.value;
-    this.byAdd.emit({ end, start, title, isAllDay, occasionType, coachId, groupId, athleteId } as unknown as ScheduleItem);
+    if (!start || !end) return;
+
+    this.byAdd.emit({
+      start: DateService.formatToISOString(start),
+      end: DateService.formatToISOString(end),
+      title, isAllDay, occasionType, coachId, groupId, athleteId,
+    } as unknown as ScheduleItem);
   }
 
   public onUpdate(): void {
     const { end, start, title, isAllDay, occasionType, coachId, groupId, athleteId } = this.form.value;
+    if (!start || !end) return;
+
     this.byUpdate.emit({
       id: this.scheduleItem?.id,
-      end, start, title, isAllDay, occasionType, coachId, groupId, athleteId,
+      start: DateService.formatToISOString(start),
+      end: DateService.formatToISOString(end),
+      title, isAllDay, occasionType, coachId, groupId, athleteId,
     } as unknown as ScheduleItem);
+  }
+
+  public onDelete(): void {
+    this.byDelete.emit(this.scheduleItem?.id);
   }
 }

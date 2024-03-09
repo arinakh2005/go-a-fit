@@ -68,8 +68,11 @@
 }
 
 :root {
+  --gray-100: #d9d9d9;
+  --gray-200: #cccccc;
   --gray-300: #8a8a8a;
   --gray-400: #606060;
+  --gray-500: #595959;
   --blue-50:#f4fafe;
   --blue-100:#cae6fc;
   --blue-200:#a0d2fa;
@@ -2121,15 +2124,15 @@
 .p-buttonset.p-button-secondary > .p-button,
 .p-splitbutton.p-button-secondary > .p-button {
     color: #ffffff;
-    background: #607D8B;
-    border: 1px solid #607D8B;
+    background: var(--gray-400);
+    border: 1px solid var(--gray-400);
   }
   .p-button.p-button-secondary:not(:disabled):hover,
 .p-buttonset.p-button-secondary > .p-button:not(:disabled):hover,
 .p-splitbutton.p-button-secondary > .p-button:not(:disabled):hover {
-    background: #546E7A;
+    background: var(--gray-500);
     color: #ffffff;
-    border-color: #546E7A;
+    border-color: var(--gray-500);
   }
   .p-button.p-button-secondary:not(:disabled):focus,
 .p-buttonset.p-button-secondary > .p-button:not(:disabled):focus,
@@ -2139,15 +2142,15 @@
   .p-button.p-button-secondary:not(:disabled):active,
 .p-buttonset.p-button-secondary > .p-button:not(:disabled):active,
 .p-splitbutton.p-button-secondary > .p-button:not(:disabled):active {
-    background: #455A64;
+    background: var(--gray-400);
     color: #ffffff;
-    border-color: #455A64;
+    border-color: var(--gray-400);
   }
   .p-button.p-button-secondary.p-button-outlined,
 .p-buttonset.p-button-secondary > .p-button.p-button-outlined,
 .p-splitbutton.p-button-secondary > .p-button.p-button-outlined {
     background-color: transparent;
-    color: #607D8B;
+    color: var(--gray-400);
     border: 1px solid;
     cursor: pointer;
   }
@@ -2155,14 +2158,14 @@
 .p-buttonset.p-button-secondary > .p-button.p-button-outlined:not(:disabled):hover,
 .p-splitbutton.p-button-secondary > .p-button.p-button-outlined:not(:disabled):hover {
     background: rgba(96, 125, 139, 0.04);
-    color: #607D8B;
+    color: var(--gray-400);
     border: 1px solid;
   }
   .p-button.p-button-secondary.p-button-outlined:not(:disabled):active,
 .p-buttonset.p-button-secondary > .p-button.p-button-outlined:not(:disabled):active,
 .p-splitbutton.p-button-secondary > .p-button.p-button-outlined:not(:disabled):active {
     background: rgba(96, 125, 139, 0.16);
-    color: #607D8B;
+    color: var(--gray-400);
     border: 1px solid;
   }
   .p-button.p-button-secondary.p-button-text,

@@ -26,4 +26,10 @@ export class ScheduleItemService {
 
     return this.httpClient.put<ResponseAPI<ScheduleItem>>(url, scheduleItem);
   }
+
+  public deleteScheduleItem(id: string): Observable<ResponseAPI<unknown>> {
+    const url = `${environment.baseUrl}/schedule-items/${id}`;
+
+    return this.httpClient.delete<ResponseAPI<unknown>>(url);
+  }
 }
