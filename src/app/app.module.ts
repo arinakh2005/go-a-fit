@@ -20,6 +20,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputMaskModule } from 'primeng/inputmask';
 import { DropdownModule } from 'primeng/dropdown';
 import { GlobalService } from './sevices/global.service';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -46,8 +48,9 @@ import { GlobalService } from './sevices/global.service';
     DialogModule,
     InputMaskModule,
     DropdownModule,
+    ToastModule,
   ],
-  providers: [GlobalService],
+  providers: [GlobalService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
