@@ -12,5 +12,8 @@
   </ng-template>
   <app-schedule-item-form [isNew]="!selectedScheduleItem.id"
                           [scheduleItem]="selectedScheduleItem"
+                          (byAdd)="createScheduleItem($event)"
+                          (byUpdate)="updateScheduleItem($event)"
+                          (byClose)="isScheduleItemFormVisible = false"
   ></app-schedule-item-form>
 </p-dialog>

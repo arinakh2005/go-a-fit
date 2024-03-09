@@ -1,0 +1,84 @@
+<form class="flex flex-column gap-2" [formGroup]="form">
+  <div class="flex flex-column gap-1">
+    <label for="title">Назва</label>
+    <input pInputText id="title" formControlName="title" />
+  </div>
+
+  <div class="flex flex-column gap-1">
+    <label for="occasionType">Тип події</label>
+    <p-dropdown id="occasionType" styleClass="w-full"
+                formControlName="occasionType"
+                [options]="occasionTypes"
+    ></p-dropdown>
+  </div>
+
+  <div class="flex flex-column gap-1" *ngIf="form.get('occasionType')?.value === OccasionTypes.GroupTraining">
+    <label for="groupId">Група</label>
+    <p-dropdown id="groupId" styleClass="w-full"
+                formControlName="groupId"
+                optionLabel="name"
+                optionValue="id"
+                [options]="globalService.groups"
+    ></p-dropdown>
+  </div>
+
+  <div class="flex flex-column gap-1" *ngIf="form.get('occasionType')?.value === OccasionTypes.GroupTraining || form.get('occasionType')?.value === OccasionTypes.PersonalTraining">
+    <label for="coachId">Тренер</label>
+    <p-dropdown  id="coachId" styleClass="w-full"
+                 formControlName="coachId"
+                 optionLabel="fullName"
+                 optionValue="id"
+                 [options]="globalService.coaches"
+    ></p-dropdown>
+  </div>
+
+  <div class="flex flex-column gap-1" *ngIf="form.get('occasionType')?.value === OccasionTypes.PersonalTraining">
+    <label for="athleteId">Учень</label>
+    <p-dropdown  id="athleteId" styleClass="w-full"
+                 formControlName="athleteId"
+                 optionLabel="fullName"
+                 optionValue="id"
+                 [options]="globalService.athletes"
+    ></p-dropdown>
+  </div>
+
+  <div class="flex flex-column gap-1">
+    <label for="start">Початок:</label>
+    <p-inputMask id="start" styleClass="w-full"
+                 formControlName="start"
+                 mask="99/99/9999 99:99"
+                 placeholder="ДД/ММ/РРРР ГГ:ХХ"
+                 slotChar="ДД/ММ/РРРР ГГ:ХХ"
+    ></p-inputMask>
+  </div>
+
+  <div class="flex flex-column gap-1">
+    <label for="end">Завершення:</label>
+    <p-inputMask id="end" styleClass="w-full"
+                 formControlName="end"
+                 mask="99/99/9999 99:99"
+                 placeholder="ДД/ММ/РРРР ГГ:ХХ"
+                 slotChar="ДД/ММ/РРРР ГГ:ХХ"
+    ></p-inputMask>
+  </div>
+
+  <div class="flex align-items-center gap-2">
+    <p-checkbox [value]="form.get('isAllDay')?.value" inputId="allDay"></p-checkbox>
+    <label for="allDay">Увесь день</label>
+  </div>
+
+  <div class="flex flex-row justify-content-end gap-2">
+    <p-button *ngIf="isNew" label="Створити" icon="pi pi-check" severity="success"
+              [outlined]="true"
+              (onClick)="onAdd()"
+    ></p-button>
+    <p-button  *ngIf="!isNew" label="Зберегти" icon="pi pi-check" severity="success"
+               [outlined]="true"
+               (onClick)="onUpdate()"
+    ></p-button>
+    <p-button label="Закрити" severity="secondary"
+              [outlined]="true"
+              (onClick)="byClose.emit()"
+    ></p-button>
+  </div>
+</form>
