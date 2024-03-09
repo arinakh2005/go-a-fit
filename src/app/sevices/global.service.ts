@@ -5,6 +5,7 @@ import { take } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Athlete } from '../types/Athlete';
+import { ResponseAPI } from '../types/ResponseAPI';
 
 @Injectable()
 export class GlobalService {
@@ -20,28 +21,38 @@ export class GlobalService {
 
   public getCoaches(): void {
     this.coaches = [];
-    this.httpClient.get<Coach[]>(`${environment.baseUrl}/coaches`)
+    this.httpClient.get<ResponseAPI<Coach[]>>(`${environment.baseUrl}/coaches`)
       .pipe(take(1))
-      .subscribe((coaches) => {
-        coaches.forEach((coach) => coach.fullName = `${coach.user.name} ${coach.user.surname}`);
-        this.coaches = coaches;
+      .subscribe((response) => {
+        if (response.status !== 'success') return;
+
+        const coachesResult = response.result || [];
+        coachesResult.forEach((coach) => coach.fullName = `${coach.user.name} ${coach.user.surname}`);
+        this.coaches = coachesResult;
       });
   }
 
   public getAthletes(): void {
     this.athletes = [];
-    this.httpClient.get<Athlete[]>(`${environment.baseUrl}/athletes`)
+    this.httpClient.get<ResponseAPI<Athlete[]>>(`${environment.baseUrl}/athletes`)
       .pipe(take(1))
-      .subscribe((athletes) => {
-        athletes.forEach((athlete) => athlete.fullName = `${athlete.user.name} ${athlete.user.surname}`);
-        this.athletes = athletes;
+      .subscribe((response) => {
+        if (response.status !== 'success') return;
+
+        const athletesResult = response.result || [];
+        athletesResult.forEach((athlete) => athlete.fullName = `${athlete.user.name} ${athlete.user.surname}`);
+        this.athletes = athletesResult;
       });
   }
 
   public getGroups(): void {
     this.groups = [];
-    this.httpClient.get<Group[]>(`${environment.baseUrl}/groups`)
+    this.httpClient.get<ResponseAPI<Group[]>>(`${environment.baseUrl}/groups`)
       .pipe(take(1))
-      .subscribe((groups) => this.groups = groups);
+      .subscribe((response) => {
+        if (response.status !== 'success') return;
+
+        this.groups = response.result || [];
+      });
   }
 }
