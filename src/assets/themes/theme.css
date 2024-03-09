@@ -68,6 +68,8 @@
 }
 
 :root {
+  --gray-300: #8a8a8a;
+  --gray-400: #606060;
   --blue-50:#f4fafe;
   --blue-100:#cae6fc;
   --blue-200:#a0d2fa;
@@ -815,7 +817,9 @@
   .p-overlay-modal .p-cascadeselect-item-active > .p-cascadeselect-item-content .p-cascadeselect-group-icon {
     transform: rotate(90deg);
   }
-
+  .p-hidden-accessible{
+    display: none;
+  }
   .p-checkbox {
     width: 20px;
     height: 20px;
@@ -839,21 +843,21 @@
     height: 14px;
   }
   .p-checkbox .p-checkbox-box.p-highlight {
-    border-color: #ff0000;
-    background: #ff0000;
+    border-color: var(--gray-400);
+    background: var(--gray-400);
   }
   .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover {
-    border-color: #ff0000;
+    border-color: var(--gray-300);
   }
   .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
     outline: 0 none;
     outline-offset: 0;
     box-shadow: 0 0 0 0.2rem #bfd1f6;
-    border-color: #ff0000;
+    border-color: var(--gray-300);
   }
   .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
-    border-color: #ffbfbf;
-    background: #ffbfbf;
+    border-color: var(--gray-300);
+    background:  var(--gray-300);
     color: #ffffff;
   }
 
@@ -963,13 +967,13 @@
     border-radius: 3px;
   }
   .p-dropdown:not(.p-disabled):hover {
-    border-color: #ff0000;
+    border-color: var(--red-900);
   }
   .p-dropdown:not(.p-disabled).p-focus {
     outline: 0 none;
     outline-offset: 0;
     box-shadow: 0 0 0 0.2rem #bfd1f6;
-    border-color: #ff0000;
+    border-color: var(--red-900);
   }
   .p-dropdown.p-dropdown-clearable .p-dropdown-label {
     padding-right: 1.5rem;
@@ -1038,10 +1042,10 @@
   }
   .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
     color: #ffffff;
-    background: #ff0000;
+    background: var(--primary-800);
   }
   .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight.p-focus {
-    background: rgba(255, 0, 0, 0.24);
+    background: var(--primary-800);
   }
   .p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled).p-focus {
     color: #495057;
@@ -2145,6 +2149,7 @@
     background-color: transparent;
     color: #607D8B;
     border: 1px solid;
+    cursor: pointer;
   }
   .p-button.p-button-secondary.p-button-outlined:not(:disabled):hover,
 .p-buttonset.p-button-secondary > .p-button.p-button-outlined:not(:disabled):hover,
@@ -2283,6 +2288,7 @@
     background-color: transparent;
     color: #4CAF50;
     border: 1px solid;
+    cursor: pointer;
   }
   .p-button.p-button-success.p-button-outlined:not(:disabled):hover,
 .p-buttonset.p-button-success > .p-button.p-button-outlined:not(:disabled):hover,
@@ -4417,12 +4423,11 @@
     border: 0 none;
   }
   .p-dialog .p-dialog-header {
+    border-top: 3px solid var(--red-700);
     border-bottom: 1px solid #dee2e6;
     background: #ffffff;
     color: #495057;
-    padding: 1.5rem;
-    border-top-right-radius: 3px;
-    border-top-left-radius: 3px;
+    padding: 0.5rem;
   }
   .p-dialog .p-dialog-header .p-dialog-title {
     font-weight: 600;
@@ -4454,7 +4459,7 @@
   .p-dialog .p-dialog-content {
     background: #ffffff;
     color: #495057;
-    padding: 0 1.5rem;
+    padding: 0.5rem 0.75rem;
   }
   .p-dialog .p-dialog-content:last-of-type {
     border-bottom-right-radius: 3px;

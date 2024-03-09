@@ -1,3 +1,16 @@
 <div class="page">
-  <full-calendar [options]="scheduleOptions"></full-calendar>
+  <full-calendar #calendarRef [options]="scheduleOptions"></full-calendar>
 </div>
+
+<p-dialog [(visible)]="isScheduleItemFormVisible"
+          [modal]="true"
+          [style]="{ width: '40%', minWidth: '300px', maxWidth: '500px', minHeight: '350px' }"
+>
+  <ng-template pTemplate="header">
+    <span *ngIf="selectedScheduleItem.id" class="font-bold text-lg">Запланована подія</span>
+    <span *ngIf="!selectedScheduleItem.id" class="font-bold text-lg">Нова подія</span>
+  </ng-template>
+  <app-schedule-item-form [isNew]="!selectedScheduleItem.id"
+                          [scheduleItem]="selectedScheduleItem"
+  ></app-schedule-item-form>
+</p-dialog>

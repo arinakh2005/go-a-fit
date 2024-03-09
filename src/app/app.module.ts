@@ -10,15 +10,28 @@ import { StyleClassModule } from 'primeng/styleclass';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ScheduleItemFormComponent } from './components/schedule/schedule-item-form/schedule-item-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { CheckboxModule } from 'primeng/checkbox';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InputMaskModule } from 'primeng/inputmask';
+import { DropdownModule } from 'primeng/dropdown';
+import { GlobalService } from './sevices/global.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuHeaderComponent,
     ScheduleComponent,
+    ScheduleItemFormComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    CommonModule,
     HttpClientModule,
     AppRoutingModule,
     MenubarModule,
@@ -26,8 +39,15 @@ import { HttpClientModule } from '@angular/common/http';
     PanelMenuModule,
     StyleClassModule,
     FullCalendarModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CheckboxModule,
+    ButtonModule,
+    DialogModule,
+    InputMaskModule,
+    DropdownModule,
   ],
-  providers: [],
+  providers: [GlobalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
