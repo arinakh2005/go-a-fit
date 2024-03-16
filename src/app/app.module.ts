@@ -22,6 +22,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { GlobalService } from './sevices/global.service';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { MessageService } from 'primeng/api';
     MenuHeaderComponent,
     ScheduleComponent,
     ScheduleItemFormComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

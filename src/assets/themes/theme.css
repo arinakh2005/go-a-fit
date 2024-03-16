@@ -1970,8 +1970,8 @@
 
   .p-button {
     color: #ffffff;
-    background: #ff0000;
-    border: 1px solid #ff0000;
+    background: var(--primary-800);
+    border: 1px solid var(--primary-800);
     padding: 0.5rem 1rem;
     font-size: 1rem;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
@@ -1981,6 +1981,7 @@
     background: #b30000;
     color: #ffffff;
     border-color: #b30000;
+    cursor: pointer;
   }
   .p-button:not(:disabled):active {
     background: #ffbfbf;
@@ -1996,6 +1997,7 @@
     background: rgba(255, 0, 0, 0.04);
     color: #ff0000;
     border: 1px solid;
+    cursor: pointer;
   }
   .p-button.p-button-outlined:not(:disabled):active {
     background: rgba(255, 0, 0, 0.16);
