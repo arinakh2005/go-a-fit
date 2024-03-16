@@ -1990,18 +1990,18 @@
   }
   .p-button.p-button-outlined {
     background-color: transparent;
-    color: #ff0000;
+    color: #ffffff;
     border: 1px solid;
   }
   .p-button.p-button-outlined:not(:disabled):hover {
     background: rgba(255, 0, 0, 0.04);
-    color: #ff0000;
+    color: #ffffff;
     border: 1px solid;
     cursor: pointer;
   }
   .p-button.p-button-outlined:not(:disabled):active {
     background: rgba(255, 0, 0, 0.16);
-    color: #ff0000;
+    color: #ffffff;
     border: 1px solid;
   }
   .p-button.p-button-outlined.p-button-plain {

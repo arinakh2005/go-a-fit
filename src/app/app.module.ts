@@ -23,6 +23,11 @@ import { GlobalService } from './sevices/global.service';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { LoginComponent } from './components/login/login.component';
+import { RippleModule } from 'primeng/ripple';
+import { AuthModule } from '@auth0/auth0-angular';
+import { environment } from '../environments/environment';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { SpinnerService } from './sevices/spinner.service';
 
 @NgModule({
   declarations: [
@@ -51,8 +56,11 @@ import { LoginComponent } from './components/login/login.component';
     InputMaskModule,
     DropdownModule,
     ToastModule,
+    RippleModule,
+    AuthModule.forRoot(environment.auth),
+    ProgressSpinnerModule,
   ],
-  providers: [GlobalService, MessageService],
+  providers: [GlobalService, MessageService, SpinnerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

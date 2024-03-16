@@ -1,3 +1,9 @@
-<app-menu-header></app-menu-header>
-<p-toast position="bottom-right"></p-toast>
-<router-outlet></router-outlet>
+<div class="spinner-wrapper" *ngIf="spinnerService.isLoading">
+  <p-progressSpinner strokeWidth="4"></p-progressSpinner>
+</div>
+
+<ng-container *ngIf="isAuthDataLoaded">
+  <app-menu-header></app-menu-header>
+  <p-toast position="bottom-right"></p-toast>
+  <router-outlet></router-outlet>
+</ng-container>

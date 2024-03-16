@@ -7,10 +7,16 @@
       </div>
     </ng-template>
     <ng-template pTemplate="end">
-      <div class="search-block">
-        <i class="pi pi-search"></i>
-        <input type="text" pInputText  placeholder="Пошук" />
+      <div>
+        <p-button *ngIf="!(authService.isAuthenticated$ | async)"
+                  [outlined]="true"
+                  (click)="login()"
+        >Вхід</p-button>
+        <p-button *ngIf="(authService.isAuthenticated$ | async)"
+                  [outlined]="true"
+                  (click)="logout()"
+        >Вихід</p-button>
       </div>
-    </ng-template>
+ </ng-template>
   </p-menubar>
 </div>
