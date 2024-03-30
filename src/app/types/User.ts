@@ -16,3 +16,7 @@ export type User = {
   systemRole: SystemRole,
   fitCentAmount: number,
 }
+
+export type UserRegister = Omit<User, 'id' | 'createdAt' | 'updatedAt' | 'deletedAt' | 'fitCentAmount'>;
+
+export type UserUpdate = Omit<User, 'createdAt' | 'updatedAt' | 'deletedAt'>;

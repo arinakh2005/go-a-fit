@@ -1,7 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuItem, PrimeIcons } from 'primeng/api';
-import { AuthService, LogoutOptions } from '@auth0/auth0-angular';
-import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-menu-header',
@@ -12,8 +10,6 @@ export class MenuHeaderComponent implements OnInit {
   public menuItems: MenuItem[] = [];
 
   constructor(
-    public readonly authService: AuthService,
-    @Inject(DOCUMENT) private readonly document: Document,
   ) { }
 
   public ngOnInit(): void {
@@ -49,11 +45,7 @@ export class MenuHeaderComponent implements OnInit {
     ];
   }
 
-  public login(): void {
-    this.authService.loginWithRedirect();
-  }
+  public onLogout(): void {
 
-  public logout(): void {
-    this.authService.logout();
   }
 }
