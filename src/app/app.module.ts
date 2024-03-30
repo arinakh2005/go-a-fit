@@ -28,7 +28,7 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { environment } from '../environments/environment';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SpinnerService } from './sevices/spinner.service';
-import { UserRegisterFormComponent } from './components/users/user-register-form/user-register-form.component';
+import { UserFormComponent } from './components/users/user-form/user-form.component';
 import { CalendarModule } from 'primeng/calendar';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputGroupModule } from 'primeng/inputgroup';
@@ -41,7 +41,8 @@ import { DividerModule } from 'primeng/divider';
     ScheduleComponent,
     ScheduleItemFormComponent,
     LoginComponent,
-    UserRegisterFormComponent,
+    UsersComponent,
+    UserFormComponent,
   ],
   imports: [
     BrowserModule,

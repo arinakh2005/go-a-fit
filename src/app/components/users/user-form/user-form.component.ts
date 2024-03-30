@@ -4,15 +4,15 @@ import { SystemRole } from '../../../enums/system-role.enum';
 import { UserRegister, UserUpdate } from '../../../types/User';
 
 @Component({
-  selector: 'app-user-register-form',
-  templateUrl: './user-register-form.component.html',
-  styleUrl: './user-register-form.component.scss',
+  selector: 'app-user-form',
+  templateUrl: './user-form.component.html',
+  styleUrl: './user-form.component.scss',
 })
-export class UserRegisterFormComponent {
+export class UserFormComponent {
   @Input()
   public isNew: boolean = true;
   @Input()
-  public user: UserUpdate = {
+  public selectedUser: UserUpdate = {
     id: '',
     name: '',
     surname: '',
@@ -94,12 +94,12 @@ export class UserRegisterFormComponent {
     const { surname, name, patronymic, dateOfBirth, email, username, password, imageUrl, systemRole, fitCentAmount } = this.form.value;
 
     this.byUpdate.emit({
-      id: this.user.id,
+      id: this.selectedUser.id,
       surname, name, patronymic, dateOfBirth, imageUrl, systemRole, email, username, password, fitCentAmount
     } as unknown as UserUpdate);
   }
 
   public onDelete(): void {
-    this.byDelete.emit(this.user.id);
+    this.byDelete.emit(this.selectedUser.id);
   }
 }
