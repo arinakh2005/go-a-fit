@@ -1,0 +1,106 @@
+<div class="card">
+  <p-table #userTable
+           dataKey="id"
+           [value]="users"
+           [globalFilterFields]="['name', 'surname', 'username', 'systemRole']"
+           [rowHover]="true"
+           [(selection)]="multiSelectedUsers"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        <div>
+          <button pButton pRipple
+                  class="mr-2 p-button-success"
+                  label="Створити" icon="pi pi-plus"
+                  (click)="onCreateUserClick()"
+          ></button>
+          <button pButton pRipple
+                  class="p-button-danger"
+                  label="Видалити" icon="pi pi-trash"
+                  [disabled]="!multiSelectedUsers || !multiSelectedUsers.length"
+                  (click)="onDeleteUsersClick()"
+          ></button>
+        </div>
+        <div>
+          <div class="search-block mr-2">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="searchUser($event)" placeholder="Пошук..." />
+          </div>
+          <button pButton pRipple label="Експортувати" icon="pi pi-upload" class="p-button-warning"></button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="w-3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th class="w-4rem"></th>
+        <th pSortableColumn="surname" class="w-14rem">
+          Прізвище
+          <p-sortIcon field="surname"></p-sortIcon>
+        </th>
+        <th pSortableColumn="name" class="w-12rem">
+          Ім'я
+          <p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="patronymic" class="w-12rem">
+          По-батькові
+          <p-sortIcon field="patronymic"></p-sortIcon>
+        </th>
+        <th pSortableColumn="phone" class="w-12rem">Телефон</th>
+        <th pSortableColumn="systemRole" class="w-12rem">Системна роль</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td class="w-3rem">
+          <p-tableCheckbox [value]="user"></p-tableCheckbox>
+        </td>
+        <td class="w-4rem">
+          <img [src]="user['imageUrl']" [alt]="user.username" width="50" class="border-circle" />
+        </td>
+        <td class="w-14rem">{{ user['surname'] }}</td>
+        <td class="w-12rem">{{ user['name'] }}</td>
+        <td class="w-12rem">{{ user['patronymic'] }}</td>
+        <td class="w-12rem">{{ user['phone'] }}</td>
+        <td class="w-12rem">
+          <p-tag [value]="user['systemRole']" [styleClass]="systemRoleColor.get(user['systemRole'])"></p-tag>
+        </td>
+        <td>
+          <button pButton pRipple
+                  class="p-button-rounded p-button-success mr-2"
+                  icon="pi pi-pencil"
+                  (click)="onEditUserClick(user.id)"
+          ></button>
+          <button pButton pRipple
+                  class="p-button-rounded p-button-danger"
+                  icon="pi pi-trash"
+                  (click)="onDeleteUserClick(user)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">Загальна к-сть користувачів: {{ users.length }}</div>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog [(visible)]="isUserFormVisible"
+          [modal]="true"
+          [style]="{ width: '40%', minWidth: '300px', maxWidth: '500px', minHeight: '350px' }"
+>
+  <ng-template pTemplate="header">
+    <span *ngIf="selectedUser?.id" class="font-bold text-lg">Редагування персональних даних користувача</span>
+    <span *ngIf="!selectedUser?.id" class="font-bold text-lg">Створення користувача</span>
+  </ng-template>
+  <app-user-form [isNew]="!selectedUser?.id"
+                 [selectedUser]="selectedUser!"
+                 (byAdd)="createUser($event)"
+                 (byUpdate)="editUser($event)"
+                 (byDelete)="deleteUser($event)"
+                 (byClose)="isUserFormVisible = false"
+  ></app-user-form>
+</p-dialog>

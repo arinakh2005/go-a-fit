@@ -10,6 +10,7 @@ export type User = {
   patronymic: string | null,
   dateOfBirth: string,
   email: string,
+  phone: string,
   username: string,
   password: string,
   imageUrl: string | null,

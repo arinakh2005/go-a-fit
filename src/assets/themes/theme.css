@@ -312,7 +312,7 @@
   }
 
   .p-disabled, .p-component:disabled {
-    opacity: 0.8;
+    opacity: 0.5;
   }
 
   .p-error {
@@ -846,8 +846,8 @@
     font-size: 14px;
   }
   .p-checkbox .p-checkbox-box .p-icon {
-    width: 14px;
-    height: 14px;
+    width: 18px;
+    height: 16px;
   }
   .p-checkbox .p-checkbox-box.p-highlight {
     border-color: var(--gray-400);
@@ -2274,8 +2274,8 @@
 .p-buttonset.p-button-success > .p-button,
 .p-splitbutton.p-button-success > .p-button {
     color: #ffffff;
-    background: #4CAF50;
-    border: 1px solid #4CAF50;
+    background: #008000;
+    border: 1px solid #008000;
   }
   .p-button.p-button-success:not(:disabled):hover,
 .p-buttonset.p-button-success > .p-button:not(:disabled):hover,
@@ -2482,15 +2482,15 @@
 .p-buttonset.p-button-danger > .p-button,
 .p-splitbutton.p-button-danger > .p-button {
     color: #ffffff;
-    background: #f44336;
-    border: 1px solid #f44336;
+    background: #ff0000;
+    border: 1px solid #ff0000;
   }
   .p-button.p-button-danger:not(:disabled):hover,
 .p-buttonset.p-button-danger > .p-button:not(:disabled):hover,
 .p-splitbutton.p-button-danger > .p-button:not(:disabled):hover {
-    background: #e53935;
+    background: #ff4d4d;
     color: #ffffff;
-    border-color: #e53935;
+    border-color: #ff4d4d;
   }
   .p-button.p-button-danger:not(:disabled):focus,
 .p-buttonset.p-button-danger > .p-button:not(:disabled):focus,
@@ -2500,9 +2500,9 @@
   .p-button.p-button-danger:not(:disabled):active,
 .p-buttonset.p-button-danger > .p-button:not(:disabled):active,
 .p-splitbutton.p-button-danger > .p-button:not(:disabled):active {
-    background: #d32f2f;
+    background: #ff4d4d;
     color: #ffffff;
-    border-color: #d32f2f;
+    border-color: #ff4d4d;
   }
   .p-button.p-button-danger.p-button-outlined,
 .p-buttonset.p-button-danger > .p-button.p-button-outlined,
@@ -3036,7 +3036,7 @@
     text-align: left;
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-width: 0 0 1px 0;
-    padding: 1rem 1rem;
+    padding: 0.25rem 1rem;
   }
   .p-datatable .p-datatable-tbody > tr > td .p-row-toggler,
 .p-datatable .p-datatable-tbody > tr > td .p-row-editor-init,

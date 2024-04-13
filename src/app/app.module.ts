@@ -28,11 +28,16 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { environment } from '../environments/environment';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SpinnerService } from './sevices/spinner.service';
-import { UserFormComponent } from './components/users/user-form/user-form.component';
+import { UserComponent } from './components/users/user/user.component';
 import { CalendarModule } from 'primeng/calendar';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { DividerModule } from 'primeng/divider';
+import { UsersComponent } from './components/users/users.component';
+import { ToolbarModule } from 'primeng/toolbar';
+import { TableModule } from 'primeng/table';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { TagModule } from 'primeng/tag';
 
 @NgModule({
   declarations: [
@@ -42,7 +47,7 @@ import { DividerModule } from 'primeng/divider';
     ScheduleItemFormComponent,
     LoginComponent,
     UsersComponent,
-    UserFormComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,8 +75,12 @@ import { DividerModule } from 'primeng/divider';
     InputGroupAddonModule,
     InputGroupModule,
     DividerModule,
+    ToolbarModule,
+    TableModule,
+    ConfirmDialogModule,
+    TagModule,
   ],
   providers: [GlobalService, MessageService, SpinnerService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

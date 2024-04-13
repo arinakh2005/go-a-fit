@@ -6,15 +6,3 @@
     color: var(--primary-300);
   }
 }
-
-.search-block {
-  display: block;
-  position: relative;
-
-  .pi-search {
-    position: absolute;
-    top: 0.7rem;
-    right: 0.5rem;
-    color: var(--text-color);
-  }
-}

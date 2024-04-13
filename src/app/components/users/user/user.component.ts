@@ -4,11 +4,11 @@ import { SystemRole } from '../../../enums/system-role.enum';
 import { UserRegister, UserUpdate } from '../../../types/User';
 
 @Component({
-  selector: 'app-user-form',
-  templateUrl: './user-form.component.html',
-  styleUrl: './user-form.component.scss',
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrl: './user.component.scss',
 })
-export class UserFormComponent {
+export class UserComponent {
   @Input()
   public isNew: boolean = true;
   @Input()
@@ -19,6 +19,7 @@ export class UserFormComponent {
     patronymic: '',
     dateOfBirth: '',
     email: '',
+    phone: '',
     imageUrl: '',
     username: '',
     password: '',
