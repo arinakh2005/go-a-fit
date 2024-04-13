@@ -1,13 +1,16 @@
 <div class="surface-card p-4 shadow-2 border-round">
+  <div class="card flex justify-content-center">
+    <p-image [src]="form.controls.imageUrl.value || ''" alt="User Avatar" width="250" [preview]="true"></p-image>
+  </div>
   <form class="flex flex-column gap-2" [formGroup]="form">
     <div class="flex flex-column gap-1">
       <label for="surname">Прізвище</label>
-      <input pInputText id="surname" formControlName="surname" />
+      <input pInputText appInvalidFormControl id="surname" formControlName="surname" />
     </div>
 
     <div class="flex flex-column gap-1">
       <label for="name">Ім'я</label>
-      <input pInputText id="name" formControlName="name" />
+      <input pInputText appInvalidFormControl id="name" formControlName="name" />
     </div>
 
     <div class="flex flex-column gap-1">
@@ -17,51 +20,56 @@
 
     <div class="flex flex-column gap-1">
       <label for="email">Електронна пошта</label>
-      <input pInputText id="email" formControlName="email" />
+      <input pInputText appInvalidFormControl id="email" formControlName="email" />
     </div>
 
     <div class="flex-auto">
       <label for="dateOfBirth" class="block mb-2">Дата народження</label>
-      <p-calendar formGroupName="dateOfBirth" id="dateOfBirth" [showIcon]="true"></p-calendar>
+      <p-calendar appInvalidFormControl formControlName="dateOfBirth" id="dateOfBirth" [showIcon]="true"></p-calendar>
     </div>
 
     <div class="flex-auto">
       <label for="systemRole" class="block mb-2">Роль користувача</label>
-      <p-dropdown styleClass="w-15rem" formControlName="systemRole" id="systemRole" [options]="systemRoles"></p-dropdown>
+      <p-dropdown appInvalidFormControl styleClass="w-15rem"
+                  formControlName="systemRole" id="systemRole"
+                  [options]="systemRoles"
+      ></p-dropdown>
     </div>
 
     <p-divider align="left" type="solid">
       Облікові дані
     </p-divider>
 
-    <p-inputGroup>
+    <p-inputGroup class="w-17rem">
       <p-inputGroupAddon>
         <i class="pi pi-user"></i>
       </p-inputGroupAddon>
-      <input pInputText class="w-14rem" formGroupName="username" placeholder="Ім'я користувача в системі" />
+      <input pInputText appInvalidFormControl
+             class="w-14rem" formControlName="username" placeholder="Ім'я користувача в системі" />
     </p-inputGroup>
 
-    <p-inputGroup>
+    <p-inputGroup class="w-17rem">
       <p-inputGroupAddon>
         <i class="pi pi-key"></i>
       </p-inputGroupAddon>
-      <input pInputText class="w-14rem"  formGroupName="password" placeholder="Пароль" />
+      <input pInputText appInvalidFormControl
+             class="w-14rem password" formControlName="password" placeholder="Пароль" />
     </p-inputGroup>
 
     <div class="flex flex-row justify-content-end mb-1">
-      <div *ngIf="isNew">
+      <div *ngIf="!userId">
         <p-button label="Створити" icon="pi pi-check" severity="success"
                   [raised]="true"
                   (onClick)="onAdd()"
         ></p-button>
       </div>
 
-      <div *ngIf="!isNew" class="card flex justify-content-center gap-1">
+      <div *ngIf="userId" class="card flex justify-content-center gap-1">
         <p-button label="Зберегти" icon="pi pi-check" severity="success"
                   [raised]="true"
                   (onClick)="onUpdate()"
         ></p-button>
-        <p-button label="Видалити" icon="pi pi-trash" severity="secondary"
+        <p-button label="Видалити" icon="pi pi-trash" severity="danger"
                   [raised]="true"
                   (onClick)="onDelete()"
         ></p-button>

@@ -15,6 +15,12 @@ export class UserService {
     return this.httpClient.get<ResponseAPI<User[]>>(url);
   }
 
+  public getUserById(id: string): Observable<ResponseAPI<User>> {
+    const url = `${environment.baseUrl}/users/${id}`;
+
+    return this.httpClient.get<ResponseAPI<User>>(url);
+  }
+
   public createUser(userRegister: UserRegister): Observable<ResponseAPI<User>> {
     const url = `${environment.baseUrl}/users`;
 

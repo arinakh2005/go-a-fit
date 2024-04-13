@@ -1,72 +1,33 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { SystemRole } from '../../../enums/system-role.enum';
 import { UserRegister, UserUpdate } from '../../../types/User';
+import { UserService } from '../../../sevices/user.service';
+import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { ValidationMessageService } from '../../../sevices/validation.service';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',
+  providers: [UserService, ValidationMessageService],
 })
-export class UserComponent {
-  @Input()
-  public isNew: boolean = true;
-  @Input()
-  public selectedUser: UserUpdate = {
-    id: '',
-    name: '',
-    surname: '',
-    patronymic: '',
-    dateOfBirth: '',
-    email: '',
-    phone: '',
-    imageUrl: '',
-    username: '',
-    password: '',
-    systemRole: SystemRole.Athlete,
-    fitCentAmount: 0,
-  };
-
-  @Output()
-  public byClose = new EventEmitter();
-  @Output()
-  public byAdd = new EventEmitter<UserRegister>();
-  @Output()
-  public byUpdate = new EventEmitter<UserUpdate>();
-  @Output()
-  public byDelete = new EventEmitter<string>();
-
-  public form = this.formBuilder.group({
-    surname: [null, Validators.compose([
-      Validators.required,
-      Validators.minLength(2),
-    ])],
-    name: [null, Validators.compose([
-      Validators.required,
-      Validators.minLength(2),
-    ])],
-    patronymic: [null],
-    dateOfBirth: [null, Validators.required],
-    email: [null,Validators.compose([
-      Validators.required,
-      Validators.email,
-    ])],
-    username: [null, Validators.compose([
-      Validators.required,
-      Validators.minLength(5),
-      Validators.maxLength(50),
-      Validators.pattern('[a-zA-Z0-9\s]+'),
-    ])],
-    password: [null, Validators.compose([
-      Validators.required,
-      Validators.minLength(8),
-      Validators.maxLength(20),
-      Validators.pattern('/^(?=.*[a-zA-Z]).{8,20}$/'),
-    ])],
-    imageUrl: [null],
-    systemRole: [SystemRole.Athlete, Validators.required],
-    fitCentAmount: [0],
-  });
+export class UserComponent implements OnInit, OnDestroy {
+  public userId: string | null = null;
+  public form: FormGroup<{
+    surname: FormControl<string>,
+    name: FormControl<string>,
+    patronymic: FormControl<string | null>,
+    dateOfBirth: FormControl<string | null>,
+    email: FormControl<string>,
+    phone: FormControl<string>,
+    username: FormControl<string>,
+    password: FormControl<string>,
+    imageUrl: FormControl<string | null>,
+    systemRole: FormControl<SystemRole>,
+    fitCentAmount: FormControl<number>,
+  }>;
 
   public readonly systemRoles = [
     { value: SystemRole.Athlete, label: 'Спортсмен' },
@@ -75,32 +36,117 @@ export class UserComponent {
   ];
   public readonly SystemRole = SystemRole;
 
+  private subscriptions: Subscription[] = [];
+
   constructor(
     private readonly formBuilder: FormBuilder,
-  ) { }
+    private readonly userService: UserService,
+    private readonly activatedRoute: ActivatedRoute,
+  ) {
+    this.form = this.formBuilder.group({
+      surname: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(2),
+      ])],
+      name: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(2),
+      ])],
+      patronymic: [''],
+      dateOfBirth: ['', Validators.required],
+      email: ['',Validators.compose([
+        Validators.required,
+        Validators.email,
+      ])],
+      phone: ['', Validators.required],
+      username: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(50),
+        Validators.pattern('[a-zA-Z0-9\s]+'),
+      ])],
+      password: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(20),
+        Validators.pattern('/^(?=.*[a-zA-Z]).{8,20}$/'),
+      ])],
+      imageUrl: [null],
+      systemRole: [SystemRole.Athlete, Validators.required],
+      fitCentAmount: [0],
+    }) as FormGroup;
+  }
+
+  public ngOnInit(): void {
+    this.subscriptions.push(this.activatedRoute.params.subscribe((params) => {
+      this.userId = params['id'];
+      this.fetchUser();
+    }));
+  }
+
+  public ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
 
   public onAdd(): void {
     if (!this.form.valid) return;
 
-    const { surname, name, patronymic, dateOfBirth, email, username, password, imageUrl, systemRole } = this.form.value;
+    const userToCreate = this.form.getRawValue() as unknown as UserRegister;
 
-    this.byAdd.emit({
-      surname, name, patronymic, dateOfBirth, imageUrl, systemRole, email, username, password,
-    } as unknown as UserRegister);
+    this.subscriptions.push(this.userService.createUser(userToCreate).subscribe((response) => {
+      console.log(response)
+    }));
   }
 
   public onUpdate(): void {
-    if (!this.form.valid) return;
+    this.form.markAllAsTouched();
 
-    const { surname, name, patronymic, dateOfBirth, email, username, password, imageUrl, systemRole, fitCentAmount } = this.form.value;
+    if (!this.form.valid || !this.userId) {
+      for (let key in this.form.controls) {
+        (this.form.controls as any)[key].updateValueAndValidity({ onlySelf: true });
 
-    this.byUpdate.emit({
-      id: this.selectedUser.id,
-      surname, name, patronymic, dateOfBirth, imageUrl, systemRole, email, username, password, fitCentAmount
-    } as unknown as UserUpdate);
+        if ((this.form.controls as any)[key].errors) {
+          console.log((this.form.controls as any)[key])
+        }
+      }
+      return;
+    }
+
+    const userToUpdate = this.form.getRawValue() as unknown as UserUpdate;
+
+    this.subscriptions.push(this.userService.updateUser(this.userId, userToUpdate).subscribe((response) => {
+      console.log(response)
+    }));
   }
 
   public onDelete(): void {
-    this.byDelete.emit(this.selectedUser.id);
+    if (!this.userId) return;
+
+    this.subscriptions.push(this.userService.deleteUser(this.userId).subscribe((result) => {
+      console.log(result)
+    }));
+  }
+
+  public fetchUser(): void {
+    if (!this.userId) return;
+
+    this.subscriptions.push(this.userService.getUserById(this.userId).subscribe((response) => {
+      if (response.status !== 'success') return;
+
+      const userData = response.result;
+      this.form.patchValue({
+        surname: userData.surname,
+        name: userData.name,
+        patronymic: userData.patronymic,
+        dateOfBirth: userData.dateOfBirth,
+        email: userData.email,
+        phone: userData.phone,
+        username: userData.username,
+        password: userData.password,
+        imageUrl: userData.imageUrl,
+        systemRole: userData.systemRole,
+        fitCentAmount: userData.fitCentAmount,
+      });
+    }));
   }
 }

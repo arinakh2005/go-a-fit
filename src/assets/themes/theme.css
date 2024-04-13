@@ -1095,6 +1095,7 @@
   .p-inputgroup {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
   }
 
   .p-inputgroup-addon {

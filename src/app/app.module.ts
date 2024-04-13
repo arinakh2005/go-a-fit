@@ -38,6 +38,8 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { TableModule } from 'primeng/table';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TagModule } from 'primeng/tag';
+import { InvalidFormControlDirective } from './directives/invalid-form-control.directive';
+import { ImageModule } from 'primeng/image';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { TagModule } from 'primeng/tag';
     LoginComponent,
     UsersComponent,
     UserComponent,
+    InvalidFormControlDirective,
   ],
   imports: [
     BrowserModule,
@@ -79,6 +82,7 @@ import { TagModule } from 'primeng/tag';
     TableModule,
     ConfirmDialogModule,
     TagModule,
+    ImageModule,
   ],
   providers: [GlobalService, MessageService, SpinnerService],
   bootstrap: [AppComponent],
