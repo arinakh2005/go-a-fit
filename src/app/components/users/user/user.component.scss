@@ -1,3 +1,18 @@
+:host {
+  display: block;
+  height: 100%;
+  background-size: cover !important;
+  background: url('../../../../assets/images/background-1.png') no-repeat;
+}
+
+.surface-card {
+  position: absolute;
+  inset: 0;
+  width: 90%;
+  height: max-content;
+  margin: auto;
+}
+
 .password {
   -webkit-text-security: disc;
 }

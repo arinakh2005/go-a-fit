@@ -475,6 +475,10 @@
     right: 2.857rem;
   }
 
+  .p-calendar {
+    min-width: 100%;
+  }
+
   p-calendar.ng-dirty.ng-invalid > .p-calendar > .p-inputtext {
     border-color: #ced4da #ced4da #ced4da #e4677e;
   }

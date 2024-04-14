@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { ResponseAPI } from '../types/ResponseAPI';
@@ -37,5 +37,18 @@ export class UserService {
     const url = `${environment.baseUrl}/users/${id}`;
 
     return this.httpClient.delete<ResponseAPI<unknown>>(url);
+  }
+
+  public uploadAvatar(userId: string, file: File): Observable<ResponseAPI<string>> {
+    const url = `${environment.baseUrl}/users/avatar-upload`;
+    const formData = new FormData();
+    const headers = new HttpHeaders();
+
+    formData.append('image', file, file.name);
+    formData.append('userId', userId);
+    headers.append('Accept', 'application/json');
+    headers.append('enctype', 'multipart/form-data');
+
+    return this.httpClient.post<ResponseAPI<string>>(url, formData, { headers });
   }
 }

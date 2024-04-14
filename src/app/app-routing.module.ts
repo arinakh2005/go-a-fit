@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'schedule', component: ScheduleComponent },
   { path: 'login', component: LoginComponent },
   { path: 'users', component: UsersComponent },
+  { path: 'user/new', component: UserComponent },
   { path: 'user/:id', component: UserComponent },
   { path: 'user-register', component: UserComponent },
 ];

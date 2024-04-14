@@ -87,20 +87,3 @@
     </ng-template>
   </p-table>
 </div>
-
-<p-dialog [(visible)]="isUserFormVisible"
-          [modal]="true"
-          [style]="{ width: '40%', minWidth: '300px', maxWidth: '500px', minHeight: '350px' }"
->
-  <ng-template pTemplate="header">
-    <span *ngIf="selectedUser?.id" class="font-bold text-lg">Редагування персональних даних користувача</span>
-    <span *ngIf="!selectedUser?.id" class="font-bold text-lg">Створення користувача</span>
-  </ng-template>
-  <app-user-form [isNew]="!selectedUser?.id"
-                 [selectedUser]="selectedUser!"
-                 (byAdd)="createUser($event)"
-                 (byUpdate)="editUser($event)"
-                 (byDelete)="deleteUser($event)"
-                 (byClose)="isUserFormVisible = false"
-  ></app-user-form>
-</p-dialog>

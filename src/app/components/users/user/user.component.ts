@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { SystemRole } from '../../../enums/system-role.enum';
 import { UserRegister, UserUpdate } from '../../../types/User';
@@ -6,6 +6,8 @@ import { UserService } from '../../../sevices/user.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { ValidationMessageService } from '../../../sevices/validation.service';
+import { FileUploadHandlerEvent } from 'primeng/fileupload';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-user',
@@ -42,6 +44,7 @@ export class UserComponent implements OnInit, OnDestroy {
     private readonly formBuilder: FormBuilder,
     private readonly userService: UserService,
     private readonly activatedRoute: ActivatedRoute,
+    private readonly messageService: MessageService,
   ) {
     this.form = this.formBuilder.group({
       surname: ['', Validators.compose([
@@ -54,7 +57,7 @@ export class UserComponent implements OnInit, OnDestroy {
       ])],
       patronymic: [''],
       dateOfBirth: ['', Validators.required],
-      email: ['',Validators.compose([
+      email: ['', Validators.compose([
         Validators.required,
         Validators.email,
       ])],
@@ -79,6 +82,8 @@ export class UserComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.subscriptions.push(this.activatedRoute.params.subscribe((params) => {
+      if (!params.hasOwnProperty('id')) return;
+
       this.userId = params['id'];
       this.fetchUser();
     }));
@@ -147,6 +152,22 @@ export class UserComponent implements OnInit, OnDestroy {
         systemRole: userData.systemRole,
         fitCentAmount: userData.fitCentAmount,
       });
+    }));
+  }
+
+  public onImageUpload($event: FileUploadHandlerEvent): void {
+    if (!this.userId) {
+      this.messageService.add({ severity: 'error', summary: 'Користувача не існує. Будь ласка, заповніть всі обов\'язкові поля та збережіть дані.' });
+      return;
+    }
+
+    this.subscriptions.push(this.userService.uploadAvatar(this.userId, $event.files[0]).subscribe((response) => {
+      if (response.status === 'success') {
+        this.messageService.add({ severity: response.status, summary: 'Успішно оновлено зображення' });
+        this.form.controls.imageUrl.patchValue(response.result);
+      } else {
+        this.messageService.add({ severity: response.status, summary: response.message || 'Помилка завантаження зображення' });
+      }
     }));
   }
 }

@@ -9,8 +9,7 @@ import { MenuItem, PrimeIcons } from 'primeng/api';
 export class MenuHeaderComponent implements OnInit {
   public menuItems: MenuItem[] = [];
 
-  constructor(
-  ) { }
+  constructor() { }
 
   public ngOnInit(): void {
     this.menuItems = [
@@ -40,7 +39,13 @@ export class MenuHeaderComponent implements OnInit {
       },
       {
         label: 'Тренери',
+        icon: PrimeIcons.ID_CARD,
+        routerLink: '/coaches',
+      },
+      {
+        label: 'Користувачі',
         icon: PrimeIcons.USERS,
+        routerLink: '/users',
       },
     ];
   }

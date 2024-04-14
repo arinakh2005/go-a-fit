@@ -5,5 +5,7 @@
 <ng-container *ngIf="isAuthDataLoaded">
   <app-menu-header></app-menu-header>
   <p-toast position="bottom-right"></p-toast>
-  <router-outlet></router-outlet>
+  <div class="page">
+    <router-outlet></router-outlet>
+  </div>
 </ng-container>

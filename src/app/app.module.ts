@@ -40,6 +40,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TagModule } from 'primeng/tag';
 import { InvalidFormControlDirective } from './directives/invalid-form-control.directive';
 import { ImageModule } from 'primeng/image';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { ImageModule } from 'primeng/image';
     ConfirmDialogModule,
     TagModule,
     ImageModule,
+    FileUploadModule,
   ],
   providers: [GlobalService, MessageService, SpinnerService],
   bootstrap: [AppComponent],

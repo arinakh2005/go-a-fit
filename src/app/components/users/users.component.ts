@@ -44,7 +44,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   public onCreateUserClick(): void {
-
+    this.router.navigate(['user/new']);
   }
 
   public onDeleteUsersClick(): void {
