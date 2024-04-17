@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, PrimeIcons } from 'primeng/api';
+import { UserService } from '../../sevices/user.service';
+import { AuthService } from '../../sevices/auth.service';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-menu-header',
@@ -8,10 +13,23 @@ import { MenuItem, PrimeIcons } from 'primeng/api';
 })
 export class MenuHeaderComponent implements OnInit {
   public menuItems: MenuItem[] = [];
+  public isLoginPage: boolean | null = null;
+  public urlChanges$ = new Subject();
 
-  constructor() { }
+  constructor(
+    public readonly userService: UserService,
+    private readonly authService: AuthService,
+    private readonly router: Router,
+    public readonly location: Location,
+  ) { }
 
   public ngOnInit(): void {
+    this.isLoginPage = this.location.path() === '/login';
+    this.location.onUrlChange((url: string) => {
+      this.urlChanges$.next(url);
+      this.isLoginPage = url === '/login';
+    });
+
     this.menuItems = [
       {
         label: 'Головна',
@@ -50,7 +68,11 @@ export class MenuHeaderComponent implements OnInit {
     ];
   }
 
-  public onLogout(): void {
-
+  public signOut(): void {
+    this.authService.logout().subscribe(() => {
+      this.authService.clearJwtToken();
+      this.userService.reset();
+      this.router.navigate(['/login']);
+    });
   }
 }

@@ -5,7 +5,6 @@ import { UserRegister, UserUpdate } from '../../../types/User';
 import { UserService } from '../../../sevices/user.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { ValidationMessageService } from '../../../sevices/validation.service';
 import { FileUploadHandlerEvent } from 'primeng/fileupload';
 import { MessageService } from 'primeng/api';
 
@@ -13,7 +12,6 @@ import { MessageService } from 'primeng/api';
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',
-  providers: [UserService, ValidationMessageService],
 })
 export class UserComponent implements OnInit, OnDestroy {
   public userId: string | null = null;

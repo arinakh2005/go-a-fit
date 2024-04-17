@@ -4,10 +4,37 @@ import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { ResponseAPI } from '../types/ResponseAPI';
 import { User, UserRegister, UserUpdate } from '../types/User';
+import { LocalStorageUtil } from '../utils/local-storage.util';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserService {
-  constructor(private readonly httpClient: HttpClient) { }
+  private readonly USER = 'user';
+  private readonly storage = new LocalStorageUtil<User>(this.USER);
+
+  constructor(
+    private readonly httpClient: HttpClient,
+    private readonly router: Router,
+  ) { }
+
+  public get user(): User | null {
+    const user = this.storage.get();
+
+    if (!user) {
+      this.reset();
+      this.router.navigate(['/login']);
+    }
+
+    return user || null;
+  }
+
+  public set user(user: User) {
+    this.storage.save(user);
+  }
+
+  public reset(): void {
+    this.storage.clear();
+  }
 
   public getUsers(): Observable<ResponseAPI<User[]>> {
     const url = `${environment.baseUrl}/users`;

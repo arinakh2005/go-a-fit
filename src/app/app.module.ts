@@ -9,7 +9,7 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { StyleClassModule } from 'primeng/styleclass';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { ScheduleComponent } from './components/schedule/schedule.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ScheduleItemFormComponent } from './components/schedule/schedule-item-form/schedule-item-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -24,8 +24,6 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { LoginComponent } from './components/login/login.component';
 import { RippleModule } from 'primeng/ripple';
-import { AuthModule } from '@auth0/auth0-angular';
-import { environment } from '../environments/environment';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SpinnerService } from './sevices/spinner.service';
 import { UserComponent } from './components/users/user/user.component';
@@ -41,10 +39,17 @@ import { TagModule } from 'primeng/tag';
 import { InvalidFormControlDirective } from './directives/invalid-form-control.directive';
 import { ImageModule } from 'primeng/image';
 import { FileUploadModule } from 'primeng/fileupload';
+import { HomeComponent } from './components/home/home.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { AuthService } from './sevices/auth.service';
+import { UserService } from './sevices/user.service';
+import { ValidationMessageService } from './sevices/validation.service';
+import { SystemRoleGuard } from './guards/system-role.guard';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
     MenuHeaderComponent,
     ScheduleComponent,
     ScheduleItemFormComponent,
@@ -73,7 +78,6 @@ import { FileUploadModule } from 'primeng/fileupload';
     DropdownModule,
     ToastModule,
     RippleModule,
-    AuthModule.forRoot(environment.auth),
     ProgressSpinnerModule,
     CalendarModule,
     InputGroupAddonModule,
@@ -86,7 +90,16 @@ import { FileUploadModule } from 'primeng/fileupload';
     ImageModule,
     FileUploadModule,
   ],
-  providers: [GlobalService, MessageService, SpinnerService],
+  providers: [
+    GlobalService,
+    MessageService,
+    SpinnerService,
+    AuthService,
+    UserService,
+    ValidationMessageService,
+    SystemRoleGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

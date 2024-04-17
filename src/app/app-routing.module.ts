@@ -4,14 +4,20 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
 import { LoginComponent } from './components/login/login.component';
 import { UsersComponent } from './components/users/users.component';
 import { UserComponent } from './components/users/user/user.component';
+import { HomeComponent } from './components/home/home.component';
+import { SystemRoleGuard } from './guards/system-role.guard';
+import { SystemRole } from './enums/system-role.enum';
 
 const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
+  { path: 'home', component: HomeComponent },
   { path: 'schedule', component: ScheduleComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'users', component: UsersComponent },
-  { path: 'user/new', component: UserComponent },
+  { path: 'users', component: UsersComponent, canActivate: [SystemRoleGuard], data: { roles: [SystemRole.Admin, SystemRole.Coach] }},
+  { path: 'user/new', component: UserComponent, canActivate: [SystemRoleGuard], data: { roles: [SystemRole.Admin] }},
   { path: 'user/:id', component: UserComponent },
-  { path: 'user-register', component: UserComponent },
+  { path: 'user-register', component: UserComponent, canActivate: [SystemRoleGuard], data: { roles: [SystemRole.Admin] }},
+  { path: '**', redirectTo: 'home' },
 ];
 
 @NgModule({

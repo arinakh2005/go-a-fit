@@ -21,3 +21,9 @@ export type User = {
 export type UserRegister = Omit<User, 'id' | 'createdAt' | 'updatedAt' | 'deletedAt' | 'fitCentAmount'>;
 
 export type UserUpdate = Omit<User, 'createdAt' | 'updatedAt' | 'deletedAt'>;
+
+export type UserRetrieve = Omit<User, 'password'>;
+
+export type UserLogin = Pick<User, 'username' | 'password'>;
+
+export type UserAuthorized = { user: UserRetrieve, authToken: string };

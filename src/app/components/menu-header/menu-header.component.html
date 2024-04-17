@@ -7,13 +7,17 @@
       </div>
     </ng-template>
     <ng-template pTemplate="end">
-      <div>
-        <p-button [outlined]="true"
+      <div *ngIf="isLoginPage === false">
+        <p-button *ngIf="!userService?.user"
+                  icon="pi pi-sign-in" label="Вхід"
+                  [outlined]="true"
                   routerLink="/login"
-        >Вхід</p-button>
-        <p-button [outlined]="true"
-                  (click)="onLogout()"
-        >Вихід</p-button>
+        ></p-button>
+        <p-button *ngIf="userService?.user"
+                  icon="pi pi-sign-out" label="Вихід"
+                  [outlined]="true"
+                  (click)="signOut()"
+        ></p-button>
       </div>
     </ng-template>
   </p-menubar>
