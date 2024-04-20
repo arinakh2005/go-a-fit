@@ -7,11 +7,13 @@ import { UserComponent } from './components/users/user/user.component';
 import { HomeComponent } from './components/home/home.component';
 import { SystemRoleGuard } from './guards/system-role.guard';
 import { SystemRole } from './enums/system-role.enum';
+import { AttendanceTrackerComponent } from './components/attendance-tracker/attendance-tracker.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
   { path: 'schedule', component: ScheduleComponent },
+  { path: 'attendance-tracker', component: AttendanceTrackerComponent },
   { path: 'login', component: LoginComponent },
   { path: 'users', component: UsersComponent, canActivate: [SystemRoleGuard], data: { roles: [SystemRole.Admin, SystemRole.Coach] }},
   { path: 'user/new', component: UserComponent, canActivate: [SystemRoleGuard], data: { roles: [SystemRole.Admin] }},

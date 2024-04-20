@@ -45,6 +45,8 @@ import { AuthService } from './sevices/auth.service';
 import { UserService } from './sevices/user.service';
 import { ValidationMessageService } from './sevices/validation.service';
 import { SystemRoleGuard } from './guards/system-role.guard';
+import { AttendanceTrackerComponent } from './components/attendance-tracker/attendance-tracker.component';
+import { GroupService } from './sevices/group.service';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,7 @@ import { SystemRoleGuard } from './guards/system-role.guard';
     UsersComponent,
     UserComponent,
     InvalidFormControlDirective,
+    AttendanceTrackerComponent,
   ],
   imports: [
     BrowserModule,
@@ -96,6 +99,7 @@ import { SystemRoleGuard } from './guards/system-role.guard';
     SpinnerService,
     AuthService,
     UserService,
+    GroupService,
     ValidationMessageService,
     SystemRoleGuard,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
