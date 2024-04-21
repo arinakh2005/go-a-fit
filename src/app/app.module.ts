@@ -47,6 +47,10 @@ import { ValidationMessageService } from './sevices/validation.service';
 import { SystemRoleGuard } from './guards/system-role.guard';
 import { AttendanceTrackerComponent } from './components/attendance-tracker/attendance-tracker.component';
 import { GroupService } from './sevices/group.service';
+import { FitProductsComponent } from './components/fit-products/fit-products.component';
+import { DataViewModule } from 'primeng/dataview';
+import { FitProductService } from './sevices/fit-product.service';
+import { RatingModule } from 'primeng/rating';
 
 @NgModule({
   declarations: [
@@ -60,6 +64,7 @@ import { GroupService } from './sevices/group.service';
     UserComponent,
     InvalidFormControlDirective,
     AttendanceTrackerComponent,
+    FitProductsComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,6 +97,8 @@ import { GroupService } from './sevices/group.service';
     TagModule,
     ImageModule,
     FileUploadModule,
+    DataViewModule,
+    RatingModule,
   ],
   providers: [
     GlobalService,
@@ -100,6 +107,7 @@ import { GroupService } from './sevices/group.service';
     AuthService,
     UserService,
     GroupService,
+    FitProductService,
     ValidationMessageService,
     SystemRoleGuard,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

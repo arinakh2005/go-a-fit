@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SystemRoleGuard } from './guards/system-role.guard';
 import { SystemRole } from './enums/system-role.enum';
 import { AttendanceTrackerComponent } from './components/attendance-tracker/attendance-tracker.component';
+import { FitProductsComponent } from './components/fit-products/fit-products.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'user/new', component: UserComponent, canActivate: [SystemRoleGuard], data: { roles: [SystemRole.Admin] }},
   { path: 'user/:id', component: UserComponent },
   { path: 'user-register', component: UserComponent, canActivate: [SystemRoleGuard], data: { roles: [SystemRole.Admin] }},
+  { path: 'fit-products', component: FitProductsComponent },
   { path: '**', redirectTo: 'home' },
 ];
 

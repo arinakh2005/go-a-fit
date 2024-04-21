@@ -14,6 +14,7 @@ import { SystemRole } from '../../enums/system-role.enum';
 })
 export class MenuHeaderComponent implements OnInit {
   public menuItems: MenuItem[] = [];
+  public activeMenuItem: MenuItem | null = null; // TODO
   public isLoginPage: boolean | null = null;
   public urlChanges$ = new Subject();
 
@@ -55,9 +56,10 @@ export class MenuHeaderComponent implements OnInit {
     return [
       { label: 'Головна', icon: PrimeIcons.HOME, routerLink: '/' },
       { label: 'Розклад', icon: PrimeIcons.CALENDAR, routerLink: '/schedule' },
-      { label: 'Відвідуваність', icon: PrimeIcons.ID_CARD, routerLink: `/attendance-tracker` },
+      { label: 'Відвідуваність', icon: PrimeIcons.TABLE, routerLink: `/attendance-tracker` },
       { label: 'Тренери', icon: PrimeIcons.ID_CARD, routerLink: '/coaches' },
       { label: 'Користувачі', icon: PrimeIcons.USERS, routerLink: '/users' },
+      { label: 'Fit-Gifts', icon: PrimeIcons.GIFT, routerLink: '/fit-products' },
     ];
   }
 
@@ -65,9 +67,10 @@ export class MenuHeaderComponent implements OnInit {
     return [
       { label: 'Головна', icon: PrimeIcons.HOME, routerLink: '/' },
       { label: 'Розклад', icon: PrimeIcons.CALENDAR, routerLink: '/schedule' },
-      { label: 'Облік відвідувань', icon: PrimeIcons.ID_CARD, routerLink: `/attendance-tracker/coach/${this.userService.user?.id}` },
+      { label: 'Відвідуваність', icon: PrimeIcons.TABLE, routerLink: `/attendance-tracker` },
       { label: 'Тренери', icon: PrimeIcons.ID_CARD, routerLink: '/coaches' },
       { label: 'Користувачі', icon: PrimeIcons.USERS, routerLink: '/users' },
+      { label: 'Fit-Gifts', icon: PrimeIcons.GIFT, routerLink: '/fit-products' },
     ];
   }
 
@@ -82,6 +85,7 @@ export class MenuHeaderComponent implements OnInit {
       },
       { label: 'Розклад', icon: PrimeIcons.CALENDAR, routerLink: '/schedule' },
       { label: 'Тренери', icon: PrimeIcons.ID_CARD, routerLink: '/coaches' },
+      { label: 'Fit-Gifts', icon: PrimeIcons.GIFT, routerLink: '/fit-products' },
     ];
   }
 }

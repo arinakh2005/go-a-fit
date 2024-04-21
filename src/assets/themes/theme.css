@@ -1743,8 +1743,8 @@
     color: #6c757d;
   }
   .p-selectbutton .p-button.p-highlight {
-    background: #ff0000;
-    border-color: #ff0000;
+    background: var(--primary-800);
+    border-color: var(--primary-800);
     color: #ffffff;
   }
   .p-selectbutton .p-button.p-highlight .p-button-icon-left,
@@ -2059,7 +2059,7 @@
   .p-button:focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem #bfd1f6;
+    box-shadow: 0 0 0 0.1rem var(--red-50);
   }
   .p-button .p-button-label {
     transition-duration: 0.2s;
@@ -3214,11 +3214,9 @@
     border-radius: 0;
   }
   .p-dataview .p-dataview-header {
-    background: #f8f9fa;
+    padding: 1rem 1rem 0.5rem;
     color: #495057;
-    border: 1px solid #e9ecef;
-    border-width: 0 0 1px 0;
-    padding: 1rem 1rem;
+    text-align: end;
     font-weight: 600;
   }
   .p-dataview .p-dataview-content {
@@ -6130,12 +6128,12 @@
     border-radius: 3px;
   }
   .p-avatar.p-avatar-lg {
-    width: 3rem;
-    height: 3rem;
-    font-size: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.25rem;
   }
   .p-avatar.p-avatar-lg .p-avatar-icon {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
   .p-avatar.p-avatar-xl {
     width: 4rem;
