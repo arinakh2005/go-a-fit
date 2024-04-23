@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
         Validators.required,
         Validators.minLength(5),
         Validators.maxLength(50),
-        Validators.pattern('[a-zA-Z0-9\s]+'),
+        Validators.pattern('[a-zA-Z0-9._\s]+'),
       ])],
       password: ['', Validators.compose([
         Validators.required,

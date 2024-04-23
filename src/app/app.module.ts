@@ -51,6 +51,9 @@ import { FitProductsComponent } from './components/fit-products/fit-products.com
 import { DataViewModule } from 'primeng/dataview';
 import { FitProductService } from './sevices/fit-product.service';
 import { RatingModule } from 'primeng/rating';
+import { AvatarModule } from 'primeng/avatar';
+import { ChipModule } from 'primeng/chip';
+import { TrainingPackageService } from './sevices/training-package.service';
 
 @NgModule({
   declarations: [
@@ -99,6 +102,8 @@ import { RatingModule } from 'primeng/rating';
     FileUploadModule,
     DataViewModule,
     RatingModule,
+    AvatarModule,
+    ChipModule,
   ],
   providers: [
     GlobalService,
@@ -106,6 +111,7 @@ import { RatingModule } from 'primeng/rating';
     SpinnerService,
     AuthService,
     UserService,
+    TrainingPackageService,
     GroupService,
     FitProductService,
     ValidationMessageService,

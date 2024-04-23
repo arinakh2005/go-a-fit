@@ -1,0 +1,57 @@
+@import 'devices';
+
+@mixin devices($breakpoint) {
+    @if $breakpoint == desktop {
+        @media only screen and (max-width: $desktop) {
+            @content;
+        }
+    }
+
+    @if $breakpoint == tablet-landscape {
+        @media only screen and (max-width: $tablet-landscape) {
+            @content;
+        }
+    }
+
+    @if $breakpoint == tablet-large {
+        @media only screen and (max-width: $tablet-large) {
+            @content;
+        }
+    }
+
+    @if $breakpoint == tablet {
+        @media only screen and (max-width: $tablet) {
+            @content;
+        }
+    }
+
+    @if $breakpoint == tablet-small {
+        @media only screen and (max-width: $tablet-small) {
+            @content;
+        }
+    }
+
+    @if $breakpoint == mobile-landscape {
+        @media only screen and (max-width: $mobile-landscape) {
+            @content;
+        }
+    }
+
+    @if $breakpoint == mobile-large {
+        @media only screen and (max-width: $mobile-large) {
+            @content;
+        }
+    }
+
+    @if $breakpoint == mobile {
+        @media only screen and (max-width: $mobile) {
+            @content;
+        }
+    }
+
+    @if $breakpoint == mobile-small {
+        @media only screen and (max-width: $mobile-small) {
+            @content;
+        }
+    }
+}

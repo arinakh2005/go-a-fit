@@ -19,7 +19,7 @@
                   (click)="signOut()"
         ></p-button>
         <p-avatar *ngIf="userService.user?.imageUrl"
-                  styleClass="ml-2" size="large" shape="circle"
+                  styleClass="ml-2" class="vertical-align-middle" size="large" shape="circle"
                   [image]="userService.user?.imageUrl!"
         ></p-avatar>
         <p-avatar *ngIf="userService.user && !userService.user.imageUrl"

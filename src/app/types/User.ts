@@ -1,4 +1,6 @@
 import { SystemRole } from '../enums/system-role.enum';
+import { Athlete } from './Athlete';
+import { Coach } from './Coach';
 
 export type User = {
   id: string,
@@ -16,6 +18,8 @@ export type User = {
   imageUrl: string | null,
   systemRole: SystemRole,
   fitCentAmount: number,
+  athlete?: Athlete,
+  coach?: Coach,
 }
 
 export type UserRegister = Omit<User, 'id' | 'createdAt' | 'updatedAt' | 'deletedAt' | 'fitCentAmount'>;

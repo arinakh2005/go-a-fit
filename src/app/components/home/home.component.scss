@@ -1,0 +1,129 @@
+@import 'src/assets/devices';
+@import 'src/assets/adaptive';
+
+:host {
+  display: block;
+  height: 100%;
+  background: var(--primary-50);
+}
+
+.layout {
+  height: 100%;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-areas: 'training-package training-package personal-info'
+                       'news             bonuses          personal-info'
+                       'news             records          personal-info';
+}
+
+.personal-info {
+  grid-area: personal-info;
+}
+
+.training-package {
+  grid-area: training-package;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bonuses {
+  grid-area: bonuses;
+}
+
+.news {
+  grid-area: news;
+}
+
+.records {
+  grid-area: records;
+}
+
+.training-package-header {
+  display: flex;
+  justify-content: space-between;
+
+  .training-package-title {
+    font-size: 1.75rem;
+
+    @include devices($desktop) {
+      font-size: 1.25rem;
+    }
+  }
+
+  .training-package-expired {
+    border-bottom: 1px dashed;
+    font-size: 1.125rem;
+    line-height: 2rem;
+    color: var(--gray-300);
+
+    @include devices($desktop) {
+      font-size: 0.75rem;
+    }
+  }
+}
+
+.training-package-metrics {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.training-package-metric {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.4) 0 2px 4px,
+              rgba(0, 0, 0, 0.3) 0 7px 13px -3px,
+              rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  background-color: var(--primary-800);
+  color: #FFFFFF;
+  text-align: center;
+  word-wrap: normal;
+
+  &__header {
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+
+    @include devices($desktop) {
+      font-size: 1rem;
+    }
+  }
+  &__amount {
+    font-size: 4rem;
+    padding-bottom: 1rem;
+
+    @include devices($desktop) {
+      font-size: 3rem;
+    }
+  }
+}
+
+.centered-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 5rem);
+  color: var(--gray-300);
+}
+
+.cents-amount {
+  font-size: 5rem;
+
+  @include devices($desktop) {
+    font-size: 4rem;
+  }
+}
+
+.fit-coin-image {
+  max-height: 7rem;
+
+  @include devices($desktop) {
+    max-height: 5.5rem;
+  }
+}
