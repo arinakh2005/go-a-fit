@@ -8,6 +8,12 @@
     </ng-template>
     <ng-template pTemplate="end">
       <div *ngIf="isLoginPage === false">
+        <p-button *ngIf="userService.user"
+                  icon="pi pi-shopping-cart" styleClass="mr-2"
+                  [outlined]="true"
+                  [badge]="fitOrderService.bracketProducts?.length ? fitOrderService.bracketProducts!.length.toString() : '0'"
+                  (click)="openBracket()"
+        ></p-button>
         <p-button *ngIf="!userService.user"
                   icon="pi pi-sign-in" label="Вхід"
                   [outlined]="true"

@@ -1,0 +1,53 @@
+<p-table *ngIf="bracketProducts.length" [value]="bracketProducts">
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="title">Назва</th>
+      <th pSortableColumn="image"></th>
+      <th pSortableColumn="cost" class="w-5rem">Вартість</th>
+      <th pSortableColumn="userBuyQty" class="text-center">Кількість</th>
+      <th class="2rem"></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td>{{ product.title }}</td>
+      <td><img class="border-round h-4rem max-w-5rem" [src]="product['imageUrl']" [alt]="product.title" /></td>
+      <td class="text-center w-5rem">
+        <div class="flex align-items-center">
+          <span class="text-2xl font-semibold">{{ product.buyCost }}</span>
+          <img src="assets/images/fit-coin-2.png" class="w-2rem" alt="Fit Coin" />
+        </div>
+      </td>
+      <td class="text-center">
+        <p-button icon="pi pi-minus" styleClass="text-gray-300"
+                  [text]="true" [rounded]="true" [disabled]="!product.userBuyQty"
+                  (click)="changeProductQuantity(product, 'decrease')"
+        ></p-button>
+        {{ product.userBuyQty }}
+        <p-button icon="pi pi-plus" styleClass="text-green-500"
+                  [text]="true" [rounded]="true"
+                  (click)="changeProductQuantity(product, 'increase')"
+        ></p-button>
+      </td>
+      <td>
+        <p-button icon="pi pi-trash" styleClass="text-gray-400"
+                  [rounded]="true" [text]="true"
+                  (click)="removeProductFromBracket(product)"
+        ></p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<div *ngIf="!bracketProducts.length" class="py-6 text-2xl text-center">Кошик порожній</div>
+
+<div class="flex w-full justify-content-between mt-3">
+  <div class="flex align-items-center">
+    <span class="text-l font-semibold">Загальна вартість: {{ totalSum }}</span>
+    <img [style.width.px]="20" src="assets/images/fit-coin-2.png" alt="Fit Coin" />
+  </div>
+  <p-button type="button" label="Замовити" icon="pi pi-shopping-bag"
+            [disabled]="!bracketProducts.length"
+            (click)="createOrder()"
+  ></p-button>
+</div>

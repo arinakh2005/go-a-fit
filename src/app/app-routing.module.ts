@@ -24,6 +24,17 @@ const routes: Routes = [
   { path: '**', redirectTo: 'home' },
 ];
 
+export const RouterPaths = {
+  DEFAULT: '/',
+  HOME: '/home',
+  SCHEDULE: '/schedule',
+  ATTENDANCE_TRACKER: '/attendance-tracker',
+  LOGIN: '/login',
+  COACHES: '/coaches',
+  USERS: '/users',
+  FIT_PRODUCTS: '/fit-products',
+}
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

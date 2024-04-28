@@ -54,6 +54,10 @@ import { RatingModule } from 'primeng/rating';
 import { AvatarModule } from 'primeng/avatar';
 import { ChipModule } from 'primeng/chip';
 import { TrainingPackageService } from './sevices/training-package.service';
+import { UserBracketComponent } from './components/user-bracket/user-bracket.component';
+import { BadgeModule } from 'primeng/badge';
+import { FitOrderService } from './sevices/fit-order.service';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @NgModule({
   declarations: [
@@ -68,6 +72,7 @@ import { TrainingPackageService } from './sevices/training-package.service';
     InvalidFormControlDirective,
     AttendanceTrackerComponent,
     FitProductsComponent,
+    UserBracketComponent,
   ],
   imports: [
     BrowserModule,
@@ -104,16 +109,19 @@ import { TrainingPackageService } from './sevices/training-package.service';
     RatingModule,
     AvatarModule,
     ChipModule,
+    BadgeModule,
   ],
   providers: [
     GlobalService,
     MessageService,
+    DialogService,
     SpinnerService,
     AuthService,
     UserService,
     TrainingPackageService,
     GroupService,
     FitProductService,
+    FitOrderService,
     ValidationMessageService,
     SystemRoleGuard,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
