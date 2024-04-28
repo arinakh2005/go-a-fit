@@ -10,6 +10,8 @@ import { OccasionType } from '../../enums/occasion-type';
 import { ScheduleItemService } from '../../sevices/schedule-item.service';
 import { MessageService } from 'primeng/api';
 import { FullCalendarComponent } from '@fullcalendar/angular';
+import { OccasionStatusStyleClass } from '../../enums/occasion-status.enum';
+import { OccasionStatus } from '../../enums/occasion-status.enum';
 
 @Component({
   selector: 'app-schedule',
@@ -23,7 +25,11 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 
   public scheduleOptions!: CalendarOptions;
   public isScheduleItemFormVisible = false;
-  public selectedScheduleItem: ScheduleItem = { start: new Date(), end: new Date(), title: '', occasionType: OccasionType.GroupTraining };
+  public selectedScheduleItem: ScheduleItem = {
+    start: new Date(), end: new Date(), title: '',
+    occasionType: OccasionType.GroupTraining,
+    occasionStatus: OccasionStatus.Planned,
+  };
 
   private subscriptions: Subscription[] = [];
 
@@ -57,6 +63,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
         end: DateService.formatToString($event.event.end),
         isAllDay: $event.event.allDay,
         occasionType: $event.event.extendedProps.occasionType,
+        occasionStatus: $event.event.extendedProps.occasionStatus,
         coachId: $event.event.extendedProps.coachId,
         athleteId: $event.event.extendedProps.athleteId,
         groupId: $event.event.extendedProps.groupId,
@@ -67,6 +74,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
         start: DateService.formatToString($event.start),
         end: DateService.formatToString($event.end),
         occasionType: OccasionType.GroupTraining,
+        occasionStatus: OccasionStatus.Planned,
       };
     }
     this.isScheduleItemFormVisible = true;
@@ -129,6 +137,12 @@ export class ScheduleComponent implements OnInit, OnDestroy {
       headerToolbar: {left: 'dayGridMonth,timeGridWeek', center: 'title', right: 'prev,next'},
       buttonText: {today: 'Сьогодні', month: 'Місяць', week: 'Тиждень', day: 'День', list: 'Список'},
       titleFormat: {year: 'numeric', month: 'long'},
+      displayEventEnd: true,
+      eventTimeFormat: {
+        hour: '2-digit',
+        minute: '2-digit',
+        meridiem: false,
+      },
       eventClick: ($event) => this.onDateCellClick('editing', $event),
       select: ($event) => this.onDateCellClick('creation', $event),
     };
@@ -148,7 +162,8 @@ export class ScheduleComponent implements OnInit, OnDestroy {
         title: scheduleItem.title,
         start: new Date(scheduleItem.start),
         end: new Date(scheduleItem.end),
-        // className: TrainingStatusStyleClass.get(scheduleItem.status)!,
+        color: scheduleItem.group?.color,
+        className: OccasionStatusStyleClass.get(scheduleItem.occasionStatus)!,
       } as CalendarEvent;
       calendarEvents.push(scheduleEvent);
     });
@@ -162,10 +177,12 @@ type CalendarEvent = {
   start: Date,
   end: Date,
   className: string,
+  color: string,
   extendedProps: {
     id: string,
     coachId?: string,
     athleteId?: string,
     groupId?: string,
+    occasionStatus: OccasionStatus,
   },
 }

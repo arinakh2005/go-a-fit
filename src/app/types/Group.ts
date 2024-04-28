@@ -3,5 +3,7 @@ export type Group = {
   createdAt: string,
   updatedAt: string,
   deletedAt: string | null,
-  name: string,
+  title: string,
+  description: string,
+  color: string,
 }

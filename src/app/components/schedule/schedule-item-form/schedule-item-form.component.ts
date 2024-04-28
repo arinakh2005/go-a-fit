@@ -4,6 +4,7 @@ import { ScheduleItem } from '../../../types/ScheduleItem';
 import { OccasionType } from '../../../enums/occasion-type';
 import { DateService } from '../../../sevices/date.service';
 import { GlobalService } from '../../../sevices/global.service';
+import { OccasionStatus } from '../../../enums/occasion-status.enum';
 
 @Component({
   selector: 'app-schedule-item-form',
@@ -14,7 +15,11 @@ export class ScheduleItemFormComponent implements OnChanges {
   @Input()
   public isNew: boolean = true;
   @Input()
-  public scheduleItem: ScheduleItem = { title: '', start: '', end: '', isAllDay: false, occasionType: OccasionType.GroupTraining };
+  public scheduleItem: ScheduleItem = {
+    title: '', start: '', end: '', isAllDay: false,
+    occasionType: OccasionType.GroupTraining,
+    occasionStatus: OccasionStatus.Planned,
+  };
 
   @Output()
   public byClose = new EventEmitter();
@@ -36,13 +41,7 @@ export class ScheduleItemFormComponent implements OnChanges {
     athleteId: [null, Validators.required],
   });
 
-  public readonly occasionTypes = [
-    { value: OccasionType.GroupTraining, label: 'Групове заняття' },
-    { value: OccasionType.PersonalTraining, label: 'Індивідуальне заняття' },
-    { value: OccasionType.Holiday, label: 'Вихідний' },
-    { value: OccasionType.Competition, label: 'Змагання' },
-    { value: OccasionType.Other, label: 'Інше'},
-  ];
+  public readonly occasionTypes = Object.values(OccasionType);
   public readonly OccasionTypes = OccasionType;
 
   constructor(
