@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build:win": "(if exist ..\\go-a-fit-backend\\frontend rmdir ..\\go-a-fit-backend\\frontend /s /q) && ng build --configuration production && move dist/go-a-fit-frontend ..\\go-a-fit-backend\\frontend"
   },
   "private": true,
   "dependencies": {
@@ -23,8 +24,9 @@
     "@fullcalendar/daygrid": "^6.1.10",
     "@fullcalendar/interaction": "^6.1.11",
     "@fullcalendar/timegrid": "^6.1.10",
+    "chart.js": "^4.4.2",
     "primeflex": "^3.3.1",
-    "primeicons": "^6.0.1",
+    "primeicons": "7.0.0",
     "primeng": "^17.3.3",
     "rxjs": "~7.8.1",
     "tslib": "^2.6.2",

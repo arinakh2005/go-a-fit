@@ -103,7 +103,7 @@ export class MenuHeaderComponent implements OnInit {
       { label: 'Головна', icon: PrimeIcons.HOME, routerLink: RouterPaths.DEFAULT, visible: !this.isLoginPage },
       { label: 'Тренування', icon: PrimeIcons.BOLT, visible: !this.isLoginPage,
         items: [
-          { label: 'Перегляд власної активності', icon: PrimeIcons.CHART_BAR },
+          { label: 'Перегляд власної активності', icon: PrimeIcons.CHART_BAR, routerLink: RouterPaths.PERSONAL_ACTIVITIES },
           { label: 'Запит на відпрацювання', icon: PrimeIcons.HOURGLASS },
         ],
       },

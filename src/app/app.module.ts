@@ -58,6 +58,10 @@ import { UserBracketComponent } from './components/user-bracket/user-bracket.com
 import { BadgeModule } from 'primeng/badge';
 import { FitOrderService } from './sevices/fit-order.service';
 import { DialogService } from 'primeng/dynamicdialog';
+import { CoachesComponent } from './components/coaches/coaches.component';
+import { CardModule } from 'primeng/card';
+import { PersonalActivitiesComponent } from './components/personal-activities/personal-activities.component';
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
   declarations: [
@@ -69,6 +73,8 @@ import { DialogService } from 'primeng/dynamicdialog';
     LoginComponent,
     UsersComponent,
     UserComponent,
+    CoachesComponent,
+    PersonalActivitiesComponent,
     InvalidFormControlDirective,
     AttendanceTrackerComponent,
     FitProductsComponent,
@@ -110,6 +116,8 @@ import { DialogService } from 'primeng/dynamicdialog';
     AvatarModule,
     ChipModule,
     BadgeModule,
+    CardModule,
+    ChartModule,
   ],
   providers: [
     GlobalService,
