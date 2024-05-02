@@ -7,4 +7,8 @@ export type Coach = {
   deletedAt: string | null,
   user: User,
   fullName: string,
+  activities: string,
+  education: string,
+  rewards?: string,
+  motto: string,
 }

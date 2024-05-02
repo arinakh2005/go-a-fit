@@ -1,0 +1,32 @@
+<div class="page">
+  <p-card *ngFor="let coach of globalService.coaches" class="coach-card">
+    <ng-template pTemplate="header">
+      <img class="personal-image w-9 sm:w-16rem xl:w-10rem h-9 sm:h-16rem xl:h-10rem block xl:block mx-auto"
+           [src]="coach.user['imageUrl']" [alt]="coach.fullName"
+           (error)="coach.user['imageUrl'] = 'assets/images/default-avatar.jpg'" />
+      <div class="title">{{ coach['fullName'] }}</div>
+    </ng-template>
+    <ng-template pTemplate="subtitle">
+      <div class="activities">
+        <i class="pi pi-star-fill"></i>
+        <span>{{ coach['activities'] }}</span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <div class="card-content h-9rem">
+        <div class="education">
+          <i class="pi pi-graduation-cap"></i>
+          <span>{{ coach['education'] }}</span>
+        </div>
+        <div class="rewards" *ngIf="coach['rewards']">
+          <i class="pi pi-trophy"></i>
+          <span>{{ coach['rewards'] }}</span>
+        </div>
+        <div class="motto" *ngIf="coach['motto']">
+          <i class="pi pi-megaphone"></i>
+          <span>{{ coach['motto'] }}</span>
+        </div>
+      </div>
+    </ng-template>
+  </p-card>
+</div>

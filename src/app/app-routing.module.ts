@@ -9,6 +9,7 @@ import { SystemRoleGuard } from './guards/system-role.guard';
 import { SystemRole } from './enums/system-role.enum';
 import { AttendanceTrackerComponent } from './components/attendance-tracker/attendance-tracker.component';
 import { FitProductsComponent } from './components/fit-products/fit-products.component';
+import { CoachesComponent } from './components/coaches/coaches.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -20,7 +21,9 @@ const routes: Routes = [
   { path: 'user/new', component: UserComponent, canActivate: [SystemRoleGuard], data: { roles: [SystemRole.Admin] }},
   { path: 'user/:id', component: UserComponent },
   { path: 'user-register', component: UserComponent, canActivate: [SystemRoleGuard], data: { roles: [SystemRole.Admin] }},
+  { path: 'coaches', component: CoachesComponent },
   { path: 'fit-products', component: FitProductsComponent },
+  { path: 'personal-activities', component: FitProductsComponent },
   { path: '**', redirectTo: 'home' },
 ];
 
@@ -30,8 +33,8 @@ export const RouterPaths = {
   SCHEDULE: '/schedule',
   ATTENDANCE_TRACKER: '/attendance-tracker',
   LOGIN: '/login',
-  COACHES: '/coaches',
   USERS: '/users',
+  COACHES: '/coaches',
   FIT_PRODUCTS: '/fit-products',
 }
 

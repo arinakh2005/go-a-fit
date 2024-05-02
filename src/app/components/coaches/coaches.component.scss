@@ -1,0 +1,54 @@
+:host {
+  display: block;
+  height: 100%;
+  background-size: cover !important;
+  background: url('../../../assets/images/background-2.png') no-repeat;
+
+  ::ng-deep .p-card-content {
+    padding: 0.5rem 0;
+  }
+
+  ::ng-deep .p-card-body {
+    padding: 0.75rem 1rem;
+  }
+}
+
+.page {
+  padding: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.coach-card {
+  width: 350px;
+  height: 415px;
+
+  .title {
+    padding-top: 0.25rem;
+    font-weight: bold;
+    font-size: x-large;
+    text-align: center;
+  }
+}
+
+.personal-image {
+  padding: 0.5rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.activities,
+.education,
+.rewards,
+.motto {
+  padding-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.activities {
+  color: var(--indigo-500);
+}
