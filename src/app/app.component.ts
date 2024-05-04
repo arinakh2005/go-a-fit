@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  public title = 'go-a-fit-frontend';
+  public title = 'go-a-fit';
   public isAuthDataLoaded = false;
 
   private subscriptions: Subscription[] = [];

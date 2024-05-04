@@ -5187,12 +5187,10 @@
       display: flex;
       width: 2rem;
       height: 2rem;
-      color: #6c757d;
       border-radius: 50%;
       transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
     }
     .p-menubar .p-menubar-button:hover {
-      color: #6c757d;
       background: #e9ecef;
     }
     .p-menubar .p-menubar-button:focus {

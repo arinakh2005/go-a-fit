@@ -34,12 +34,23 @@
   }
 }
 
+.personal-info,
+.training-package,
+.bonuses,
+.news,
+.records {
+  min-height: 200px;
+
+  @include devices(mobile-large) {
+    max-width: calc(100vw - 2.5rem);
+  }
+}
+
 .personal-info {
   grid-area: personal-info;
 }
 
 .training-package {
-  min-height: 200px;
   grid-area: training-package;
   display: flex;
   flex-direction: column;
@@ -47,17 +58,14 @@
 }
 
 .bonuses {
-  min-height: 200px;
   grid-area: bonuses;
 }
 
 .news {
-  min-height: 200px;
   grid-area: news;
 }
 
 .records {
-  min-height: 200px;
   grid-area: records;
 }
 
