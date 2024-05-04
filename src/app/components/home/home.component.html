@@ -1,84 +1,82 @@
-<div class="h-full">
-  <div class="layout sm:p-1 md:p-4 lg:p-6">
-    <div class="personal-info surface-card p-4 shadow-2 border-round">
-      <ul class="list-none p-0 m-0">
-        <li class="flex justify-content-center pb-4">
-          <img [src]="userForm?.controls?.imageUrl?.value || 'assets/images/default-avatar.jpg'"
-               class="border-circle" alt="User Avatar" width="250px" />
-        </li>
-        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
-          <div class="text-500 w-8 md:w-4 font-medium">Ім'я</div>
-          <div class="text-900 w-full md:w-6 md:flex-order-0 flex-order-1">{{ userForm?.controls?.name?.value || '' }}</div>
-        </li> <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
-        <div class="text-500 w-8 md:w-4 font-medium">Прізвище</div>
-        <div class="text-900 w-full md:w-6 md:flex-order-0 flex-order-1">{{ userForm?.controls?.surname?.value || '' }}</div>
+<div class="layout p-1 md:p-2 lg:p-4">
+  <div class="personal-info surface-card p-4 sm:p-2 shadow-2 border-round">
+    <ul class="list-none p-0 m-0">
+      <li class="flex justify-content-center pb-4">
+        <img [src]="userForm?.controls?.imageUrl?.value || 'assets/images/default-avatar.jpg'"
+             class="border-circle" alt="User Avatar" width="250px" />
       </li>
-        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
-          <div class="text-500 w-8 md:w-4 font-medium">По-батькові</div>
-          <div class="text-900 w-full md:w-6 md:flex-order-0 flex-order-1">{{ userForm?.controls?.patronymic?.value || '' }}</div>
-        </li>
-        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
-          <div class="text-500 w-8 md:w-4 font-medium">Дата народження</div>
-          <div class="text-900 w-full md:w-6 md:flex-order-0 flex-order-1">{{ userForm?.controls?.dateOfBirth?.value || '' }}</div>
-        </li>
-        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
-          <div class="text-500 w-8 md:w-4 font-medium">Електронна пошта</div>
-          <div class="text-900 w-full md:w-6 md:flex-order-0 flex-order-1">{{ userForm?.controls?.email?.value || '' }}</div>
-        </li>
-        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
-          <div class="text-500 w-8 md:w-4 font-medium">Телефон</div>
-          <div class="text-900 w-full md:w-6 md:flex-order-0 flex-order-1">{{ userForm?.controls?.phone?.value || '' }}</div>
-        </li>
-      </ul>
-    </div>
+      <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-8 md:w-4 font-medium">Ім'я</div>
+        <div class="text-900 w-full md:w-6 md:flex-order-0 flex-order-1">{{ userForm?.controls?.name?.value || '' }}</div>
+      </li> <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+      <div class="text-500 w-8 md:w-4 font-medium">Прізвище</div>
+      <div class="text-900 w-full md:w-6 md:flex-order-0 flex-order-1">{{ userForm?.controls?.surname?.value || '' }}</div>
+    </li>
+      <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-8 md:w-4 font-medium">По-батькові</div>
+        <div class="text-900 w-full md:w-6 md:flex-order-0 flex-order-1">{{ userForm?.controls?.patronymic?.value || '' }}</div>
+      </li>
+      <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-8 md:w-4 font-medium">Дата народження</div>
+        <div class="text-900 w-full md:w-6 md:flex-order-0 flex-order-1">{{ userForm?.controls?.dateOfBirth?.value || '' }}</div>
+      </li>
+      <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-8 md:w-4 font-medium">Електронна пошта</div>
+        <div class="text-900 w-full md:w-6 md:flex-order-0 flex-order-1">{{ userForm?.controls?.email?.value || '' }}</div>
+      </li>
+      <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-8 md:w-4 font-medium">Телефон</div>
+        <div class="text-900 w-full md:w-6 md:flex-order-0 flex-order-1">{{ userForm?.controls?.phone?.value || '' }}</div>
+      </li>
+    </ul>
+  </div>
 
-    <div class="training-package surface-card p-4 shadow-2 border-round font-medium">
-      <ng-container *ngIf="activeUserTrainingPackage">
-        <div class="training-package-header">
-          <span class="training-package-title">Абонемент "{{ activeUserTrainingPackage.title || '' }}"</span>
-          <span class="training-package-expired">Дійсний до: {{ activeUserTrainingPackage.expirationDate || '' }}</span>
+  <div class="training-package surface-card p-4 sm:p-2 lg:p-4 shadow-2 border-round font-medium">
+    <ng-container *ngIf="activeUserTrainingPackage">
+      <div class="training-package-header">
+        <span class="training-package-title text-xl lg:text-3xl">Абонемент "{{ activeUserTrainingPackage.title || '' }}"</span>
+        <span class="training-package-expired">Дійсний до: {{ activeUserTrainingPackage.expirationDate || '' }}</span>
+      </div>
+      <div class="training-package-metrics">
+        <div class="training-package-metric">
+          <span class="training-package-metric__header">Залишилось занять</span>
+          <span class="training-package-metric__amount">
+            {{ (activeUserTrainingPackage.totalTrainingsAmount || 0) - (activeUserTrainingPackage.usedTrainingsAmount || 0) }}
+          </span>
         </div>
-        <div class="training-package-metrics">
-          <div class="training-package-metric">
-            <span class="training-package-metric__header">Залишилось занять</span>
-            <span class="training-package-metric__amount">
-              {{ (activeUserTrainingPackage.totalTrainingsAmount || 0) - (activeUserTrainingPackage.usedTrainingsAmount || 0) }}
-            </span>
-          </div>
-          <div class="training-package-metric">
-            <span class="training-package-metric__header">Відвіданих занять</span>
-            <span class="training-package-metric__amount">
-              {{ (activeUserTrainingPackage.usedTrainingsAmount || 0) }}
-            </span>
-          </div>
-          <div class="training-package-metric">
-            <span class="training-package-metric__header">Пропущених занять</span>
-            <span class="training-package-metric__amount">
-              {{ (activeUserTrainingPackage.missedTrainingsAmount || 0) }}
-            </span>
-          </div>
+        <div class="training-package-metric">
+          <span class="training-package-metric__header">Відвіданих занять</span>
+          <span class="training-package-metric__amount">
+            {{ (activeUserTrainingPackage.usedTrainingsAmount || 0) }}
+          </span>
         </div>
-      </ng-container>
-    </div>
-
-    <div class="bonuses surface-card p-4 shadow-2 border-round">
-      <div class="flex flex-column align-items-center justify-content-center h-full">
-        <div class="font-medium text-xl lg:text-3xl text-900 mb-3">Накопичені бонуси</div>
-        <div class="flex">
-          <div class="cents-amount font-medium text-900 mb-3">{{ userForm?.controls?.fitCentAmount?.value || 0 }}</div>
-          <img class="fit-coin-image" src="assets/images/fit-coin-2.png" alt="Fit Coin" />
+        <div class="training-package-metric">
+          <span class="training-package-metric__header">Пропущених занять</span>
+          <span class="training-package-metric__amount">
+            {{ (activeUserTrainingPackage.missedTrainingsAmount || 0) }}
+          </span>
         </div>
       </div>
-    </div>
+    </ng-container>
+  </div>
 
-    <div class="news surface-card p-4 shadow-2 border-round">
-      <div class="font-medium text-xl lg:text-3x text-900 mb-3">Оголошення</div>
-      <div class="centered-block text-2xl">Незабаром...</div>
+  <div class="bonuses surface-card p-4 sm:p-2 lg:p-4 shadow-2 border-round">
+    <div class="flex flex-column align-items-center h-full">
+      <div class="font-medium text-xl lg:text-3xl text-900 mb-3 align-self-start">Накопичені бонуси</div>
+      <div class="flex justify-content-center">
+        <div class="cents-amount font-medium text-900 mb-3">{{ userForm?.controls?.fitCentAmount?.value || 0 }}</div>
+        <img class="fit-coin-image" src="assets/images/fit-coin-2.png" alt="Fit Coin" />
+      </div>
     </div>
+  </div>
 
-    <div class="records surface-card p-4 shadow-2 border-round">
-      <div class="font-medium text-xl lg:text-3x text-900 mb-3">Досягнення</div>
-      <div class="centered-block text-2xl">Ви поки що не маєте досягнень в системі :)</div>
-    </div>
+  <div class="news surface-card p-4 sm:p-2 lg:p-4 shadow-2 border-round">
+    <div class="font-medium text-xl lg:text-3xl text-900 mb-3">Оголошення</div>
+    <div class="centered-block text-2xl">Незабаром...</div>
+  </div>
+
+  <div class="records surface-card p-4 sm:p-2 lg:p-4 shadow-2 border-round">
+    <div class="font-medium text-xl lg:text-3xl text-900 mb-3">Досягнення</div>
+    <div class="centered-block text-xl md:text-2xl">Ви поки що не маєте досягнень в системі :)</div>
   </div>
 </div>

@@ -5069,6 +5069,7 @@
 
   .p-menubar {
     padding: 0.5rem;
+    height: 62px;
     background: var(--red-900);
     color: var(--red-50);
   }
