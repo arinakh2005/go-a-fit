@@ -131,6 +131,9 @@
     @include devices(desktop) {
       font-size: 1rem;
     }
+    @include devices(mobile-large) {
+      font-size: 0.75rem;
+    }
   }
   &__amount {
     font-size: 4rem;
@@ -167,5 +170,8 @@
 
   @include devices(desktop) {
     max-height: 5.5rem;
+  }
+  @include devices(mobile) {
+    max-height: 5rem;
   }
 }
