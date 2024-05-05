@@ -4,7 +4,7 @@ import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { ResponseAPI } from '../types/ResponseAPI';
 import { User, UserRegister, UserUpdate } from '../types/User';
-import { Group } from '../types/Group';
+import { Group, GroupAttendanceJournal } from '../types/Group';
 
 @Injectable()
 export class GroupService {
@@ -23,6 +23,16 @@ export class GroupService {
     const url = `${environment.baseUrl}/groups/athlete${id}`;
 
     return this.httpClient.get<ResponseAPI<Group[]>>(url);
+  }
+
+  public getGroupAttendanceJournal(groupId: string, month: number, year: number): Observable<ResponseAPI<GroupAttendanceJournal>> {
+    const url = `${environment.baseUrl}/groups/attendance-journal`;
+    const params = new HttpParams()
+      .set('groupId', groupId)
+      .set('month', month)
+      .set('year', year);
+
+    return this.httpClient.get<ResponseAPI<GroupAttendanceJournal>>(url, { params });
   }
 
   public createGroup(userRegister: UserRegister): Observable<ResponseAPI<User>> {

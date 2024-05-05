@@ -12,3 +12,9 @@ export type Athlete = {
   fullName: string,
   trainingPackages?: TrainingPackage[],
 }
+
+export type AthleteAttendanceDto = {
+  groupId?: string;
+  athleteId: string;
+  fullName: string;
+}

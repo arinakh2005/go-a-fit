@@ -1,3 +1,5 @@
+import { Athlete, AthleteAttendanceDto } from './Athlete';
+
 export type Group = {
   id: string,
   createdAt: string,
@@ -6,4 +8,11 @@ export type Group = {
   title: string,
   description: string,
   color: string,
+  athletes?: Athlete[],
+}
+
+export type GroupAttendanceJournal = {
+  groupId: string,
+  athletesAttendances: AthleteAttendanceDto[],
+  trainingDates: string[],
 }

@@ -62,6 +62,7 @@ import { CoachesComponent } from './components/coaches/coaches.component';
 import { CardModule } from 'primeng/card';
 import { PersonalActivitiesComponent } from './components/personal-activities/personal-activities.component';
 import { ChartModule } from 'primeng/chart';
+import { GroupActivityComponent } from './components/attendance-tracker/group-activity/group-activity.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { ChartModule } from 'primeng/chart';
     PersonalActivitiesComponent,
     InvalidFormControlDirective,
     AttendanceTrackerComponent,
+    GroupActivityComponent,
     FitProductsComponent,
     UserBracketComponent,
   ],

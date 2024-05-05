@@ -2,7 +2,6 @@ import { SystemRole } from '../enums/system-role.enum';
 import { Athlete } from './Athlete';
 import { Coach } from './Coach';
 import { FitOrder } from './FitOrder';
-import { BracketProduct } from './FitProduct';
 
 export type User = {
   id: string,

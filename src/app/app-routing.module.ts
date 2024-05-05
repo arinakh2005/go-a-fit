@@ -11,12 +11,14 @@ import { AttendanceTrackerComponent } from './components/attendance-tracker/atte
 import { FitProductsComponent } from './components/fit-products/fit-products.component';
 import { CoachesComponent } from './components/coaches/coaches.component';
 import { PersonalActivitiesComponent } from './components/personal-activities/personal-activities.component';
+import { GroupActivityComponent } from './components/attendance-tracker/group-activity/group-activity.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
   { path: 'schedule', component: ScheduleComponent },
   { path: 'attendance-tracker', component: AttendanceTrackerComponent },
+  { path: 'attendance-tracker/group/:id', component: GroupActivityComponent, canActivate: [SystemRoleGuard], data: { roles: [SystemRole.Admin, SystemRole.Coach] }},
   { path: 'login', component: LoginComponent },
   { path: 'users', component: UsersComponent, canActivate: [SystemRoleGuard], data: { roles: [SystemRole.Admin, SystemRole.Coach] }},
   { path: 'user/new', component: UserComponent, canActivate: [SystemRoleGuard], data: { roles: [SystemRole.Admin] }},

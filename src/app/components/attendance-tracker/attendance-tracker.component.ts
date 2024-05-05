@@ -6,6 +6,7 @@ import { SystemRole } from '../../enums/system-role.enum';
 import { Subscription } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { ResponseAPI } from '../../types/ResponseAPI';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-attendance-tracker',
@@ -21,6 +22,7 @@ export class AttendanceTrackerComponent implements OnInit, OnDestroy {
     private readonly groupService: GroupService,
     private readonly userService: UserService,
     private readonly messageService: MessageService,
+    private readonly router: Router,
   ) { }
 
   public ngOnInit(): void {
@@ -29,6 +31,10 @@ export class AttendanceTrackerComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy(): void {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
+
+  public openAttendanceJournal(group: Group): void {
+    this.router.navigate([`attendance-tracker/group/${group.id}`]);
   }
 
   private fetchGroupsData(): void {
@@ -44,7 +50,6 @@ export class AttendanceTrackerComponent implements OnInit, OnDestroy {
 
     if (!fetchMethodName) return;
 
-    /* tslint:disable-next-line */
     this.subscriptions.push((this.groupService as any)?.[fetchMethodName](this.userService.user.id).subscribe((response: ResponseAPI<Group[]>) => {
       if (response.status === 'success') {
         this.groups.push(...response.result);

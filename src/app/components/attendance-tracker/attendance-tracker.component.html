@@ -1,6 +1,9 @@
 <div class="flex p-5">
   <div class="col-12 md:col-6 lg:col-3" *ngFor="let group of groups">
-    <div class="surface-card shadow-2 p-3 border-round">
+    <div class="surface-card shadow-2 p-3 border-round cursor-pointer"
+         (dblclick)="openAttendanceJournal(group)"
+         (click)="openAttendanceJournal(group)"
+    >
       <div class="flex justify-content-between mb-3">
         <div>
           <span class="block text-500 font-medium mb-3">{{ group.description }}</span>
@@ -10,8 +13,8 @@
           <i class="pi pi-bookmark text-cyan-500 text-xl"></i>
         </div>
       </div>
-      <span class="text-green-500 font-medium">8</span>
-      <span class="text-500">учасників</span>
+      <span class="text-green-500 font-medium">{{ group.athletes?.length || 0 }}</span>
+      <span class="text-500"> учасників</span>
     </div>
   </div>
 </div>

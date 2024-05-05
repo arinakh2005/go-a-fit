@@ -67,6 +67,8 @@ export class MenuHeaderComponent implements OnInit {
   }
 
   private initMenuOptions(): void {
+    this.menuItems = [];
+
     if (this.userService.user?.systemRole === SystemRole.Admin) {
       this.menuItems.push(...this.getAdminMenuOptions());
     } else if (this.userService.user?.systemRole === SystemRole.Coach) {
