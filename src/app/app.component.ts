@@ -31,7 +31,10 @@ export class AppComponent implements OnInit, OnDestroy {
         .subscribe((response) => {
           if (response.status !== 'success') return;
 
-          if (response.result.username) this.userService.user = response.result as User;
+          if (response.result.username) {
+            this.userService.user = response.result as User;
+            this.userService.initMenuOptions();
+          }
         }),
     );
   }
