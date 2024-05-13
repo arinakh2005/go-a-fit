@@ -1,17 +1,71 @@
 <div class="page">
   <div class="upper-block">
     <p-card class="chart-block">
-      <p-chart type="bar" [data]="data" [options]="chartConfig"></p-chart>
+      <p-chart type="bar" [data]="data" [options]="chartConfig" height="300"></p-chart>
     </p-card>
 
     <div class="bonus-block">
       <div class="text-3xl">Відвідайте</div>
-      <div class="text-6xl font-bold">5</div>
+      <div class="training-counter text-6xl font-bold">5</div>
       <div class="text-3xl">занять для отримання </div>
       <div class="text-5xl flex align-items-center">
         <span>20</span>
         <img [style.width.px]="50" src="assets/images/fit-coin-2.png" alt="Fit Coins" />
       </div>
     </div>
+  </div>
+  <div class="lower-block">
+    <p-card class="activities-card" header=" Мої активності">
+      <div class="training-table">
+        <p-table #attendanceTable
+                 dataKey="id"
+                 [value]="attendances"
+                 [globalFilterFields]="['startAt', 'endAt', 'coachFullName', 'isVisited']"
+                 [rowHover]="true"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="startAt">
+                Початок
+                <p-sortIcon field="startAt"></p-sortIcon>
+              </th>
+              <th pSortableColumn="endAt">
+                Завершення
+                <p-sortIcon field="endAt"></p-sortIcon>
+              </th>
+              <th pSortableColumn="coachFullName">
+                Тренер
+                <p-sortIcon field="coachFullName"></p-sortIcon>
+              </th>
+              <th class="text-center" pSortableColumn="isVisited">
+                Присутність
+                <p-sortIcon field="isVisited"></p-sortIcon>
+              </th>
+              <th></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-training>
+            <tr>
+              <td class="p-2">{{ training['startAt'] }}</td>
+              <td class="p-2">{{ training['endAt'] }}</td>
+              <td class="p-2">{{ training['coachFullName'] }}</td>
+              <td class="text-center">
+                <i class="pi" [ngClass]="{ 'text-green-500 pi-check-circle': training['isVisited'],
+                                           'text-red-500 pi-times-circle': !training['isVisited'] }"></i>
+              </td>
+              <td class="text-right">
+                <button *ngIf="training['isWorkingOffAllowed']"
+                        pButton pRipple
+                        class="p-button-rounded"
+                        size="small"
+                        icon="pi pi-calendar-clock"
+                        label="Запланувати відпрацювання"
+                ></button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </p-card>
   </div>
 </div>

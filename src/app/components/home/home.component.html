@@ -35,13 +35,13 @@
     <ng-container *ngIf="activeUserTrainingPackage">
       <div class="training-package-header">
         <span class="training-package-title text-xl lg:text-3xl">Абонемент "{{ activeUserTrainingPackage.title || '' }}"</span>
-        <span class="training-package-expired">Дійсний до: {{ activeUserTrainingPackage.expirationDate || '' }}</span>
+        <span class="training-package-expired">Дійсний до: {{ activeUserTrainingPackage.expirationDate | date : 'dd/MM/yyyy'  || '' }}</span>
       </div>
       <div class="training-package-metrics">
         <div class="training-package-metric">
           <span class="training-package-metric__header">Залишилось занять</span>
           <span class="training-package-metric__amount">
-            {{ (activeUserTrainingPackage.totalTrainingsAmount || 0) - (activeUserTrainingPackage.usedTrainingsAmount || 0) }}
+            {{ (activeUserTrainingPackage.totalTrainingsAmount || 0) - (activeUserTrainingPackage.usedTrainingsAmount || 0) - (activeUserTrainingPackage.missedTrainingsAmount || 0) }}
           </span>
         </div>
         <div class="training-package-metric">

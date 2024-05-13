@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { ResponseAPI } from '../../types/ResponseAPI';
 import { Router } from '@angular/router';
+import { GlobalService } from '../../sevices/global.service';
 
 @Component({
   selector: 'app-attendance-tracker',
@@ -20,6 +21,7 @@ export class AttendanceTrackerComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly groupService: GroupService,
+    private readonly globalService: GlobalService,
     private readonly userService: UserService,
     private readonly messageService: MessageService,
     private readonly router: Router,
@@ -46,6 +48,8 @@ export class AttendanceTrackerComponent implements OnInit, OnDestroy {
       fetchMethodName = 'getCoachGroupsByUserId';
     } else if (this.userService.user?.systemRole === SystemRole.Athlete) {
       fetchMethodName = 'getAthleteGroupsByUserId';
+    } else if (this.userService.user.systemRole === SystemRole.Admin) {
+      fetchMethodName = 'getGroupsDetailed';
     }
 
     if (!fetchMethodName) return;

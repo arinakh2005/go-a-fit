@@ -1,41 +1,55 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserService } from '../../sevices/user.service';
+import { UserAttendanceService } from '../../sevices/user-attendance.service';
+import { Subscription } from 'rxjs';
+import { MessageService } from 'primeng/api';
+import { UserAttendance } from '../../types/UserAttendance';
 
 @Component({
   selector: 'app-personal-activities',
   templateUrl: './personal-activities.component.html',
   styleUrl: './personal-activities.component.scss',
 })
-export class PersonalActivitiesComponent implements OnInit {
+export class PersonalActivitiesComponent implements OnInit, OnDestroy {
   public data: any;
   public chartConfig: any;
+  public attendances: UserAttendance[] = [];
+
+  private subscriptions: Subscription[] = [];
 
   constructor(
     public readonly userService: UserService,
+    private readonly userAttendanceService: UserAttendanceService,
+    private readonly messageService: MessageService,
   ) { }
 
   public ngOnInit(): void {
     const documentStyle = getComputedStyle(document.documentElement);
 
     this.data = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      labels: ['Грудень', 'Січень', 'Лютий', 'Березень', 'Квітень', 'Травень'],
       datasets: [
         {
-          label: 'My First dataset',
-          backgroundColor: documentStyle.getPropertyValue('--indigo-200'),
-          borderColor: documentStyle.getPropertyValue('--indigo-200'),
-          data: [65, 59, 80, 81, 56, 55, 40]
+          label: 'Відвідано занять',
+          backgroundColor: '#D4DDFC',
+          borderColor: '#D4DDFC',
+          data: [13, 10, 8, 11, 9, 12, 6]
         },
         {
-          label: 'My Second dataset',
-          backgroundColor: documentStyle.getPropertyValue('--red-200'),
-          borderColor: documentStyle.getPropertyValue('--red-200'),
-          data: [28, 48, 40, 19, 86, 27, 90]
+          label: 'Пропущено занять',
+          backgroundColor: documentStyle.getPropertyValue('--red-600'),
+          borderColor: documentStyle.getPropertyValue('--red-600'),
+          data: [0, 2, 0, 1, 3, 1, 1]
         }
       ]
     };
 
     this.chartConfig = this.getChartConfig();
+    this.fetchUserAttendances();
+  }
+
+  public ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
   private getChartConfig(): any {
@@ -46,7 +60,6 @@ export class PersonalActivitiesComponent implements OnInit {
 
     return {
       maintainAspectRatio: false,
-      aspectRatio: 0.8,
       responsive: true,
       plugins: {
         legend: {
@@ -67,5 +80,25 @@ export class PersonalActivitiesComponent implements OnInit {
         },
       }
     };
+  }
+
+  private fetchUserAttendances(): void {
+    if (!this.userService.user?.athlete?.id) return;
+
+    this.subscriptions.push(
+      this.userAttendanceService.getAttendancesByAthleteId(this.userService.user!.athlete!.id).subscribe((response) => {
+        if (response.status === 'success') {
+          const preparedTableData = response.result.map((attendanceRecord) => {
+            const coach = attendanceRecord.conductedCoach!.user;
+            const coachFullName = `${coach.surname} ${coach.name} ${coach.patronymic || ''}`;
+
+            return { ...attendanceRecord, coachFullName };
+          });
+          this.attendances.push(...preparedTableData);
+        } else {
+          this.messageService.add({severity: response.status, summary: response.message || 'Помилка серверу при отриманні даних'});
+        }
+      }),
+    );
   }
 }

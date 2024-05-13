@@ -4,12 +4,26 @@
   background-size: cover !important;
   background: url('../../../assets/images/background-2.png') no-repeat;
 
-  ::ng-deep .p-card-body {
-    height: 450px;
+  ::ng-deep .upper-block .p-card-body {
+    height: 350px;
   }
 
-  ::ng-deep .p-card-content {
+  ::ng-deep .upper-block .p-card-content {
     height: 100%;
+  }
+
+  ::ng-deep .lower-block .p-card-title {
+    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  ::ng-deep .lower-block .p-card-content {
+    padding: 0.25rem 0;
+  }
+
+  ::ng-deep .lower-block .p-card-body {
+    padding-bottom: 0.5rem;
   }
 }
 
@@ -18,16 +32,16 @@
   justify-content: space-between;
   padding: 1.5rem;
   gap: 1.5rem;
-  height: 350px;
 }
 
 .chart-block {
   width: 75%;
+  height: 350px;
 }
 
 .bonus-block {
   width: 25%;
-  height: 450px;
+  height: 350px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,4 +54,19 @@
   border-radius: 3px;
   text-align: center;
   color: #495057;
+
+  .training-counter {
+    padding: 0 1.25rem;
+    margin-top: 0.5rem;
+    border: 0.4rem dotted var(--primary-900);
+    border-radius: 50%;
+  }
+}
+
+.lower-block {
+  padding: 0 1.5rem;
+}
+
+.training-table {
+  display: block;
 }

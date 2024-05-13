@@ -10,8 +10,9 @@ import { OccasionType } from '../../enums/occasion-type';
 import { ScheduleItemService } from '../../sevices/schedule-item.service';
 import { MessageService } from 'primeng/api';
 import { FullCalendarComponent } from '@fullcalendar/angular';
-import { OccasionStatusStyleClass } from '../../enums/occasion-status.enum';
-import { OccasionStatus } from '../../enums/occasion-status.enum';
+import { OccasionStatus, OccasionStatusStyleClass } from '../../enums/occasion-status.enum';
+import { UserService } from '../../sevices/user.service';
+import { SystemRole } from '../../enums/system-role.enum';
 
 @Component({
   selector: 'app-schedule',
@@ -35,6 +36,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly scheduleService: ScheduleItemService,
+    private readonly userService: UserService,
     private readonly messageService: MessageService,
   ) { }
 
@@ -55,6 +57,8 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   }
 
   public onDateCellClick(mode: 'editing' | 'creation', $event: any): void {
+    if (this.userService.user?.systemRole !== SystemRole.Admin) return;
+
     if (mode === 'editing') {
       this.selectedScheduleItem = {
         id: $event.event.extendedProps.id,
@@ -129,8 +133,8 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   private initScheduleOptions(): void {
     this.scheduleOptions = {
       initialView: 'dayGridMonth',
-      selectable: true,
-      editable: true,
+      selectable: this.userService.user?.systemRole === SystemRole.Admin,
+      editable: this.userService.user?.systemRole === SystemRole.Admin,
       plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
       locale: 'uk',
       events: [],

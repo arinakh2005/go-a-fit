@@ -63,6 +63,7 @@ import { CardModule } from 'primeng/card';
 import { PersonalActivitiesComponent } from './components/personal-activities/personal-activities.component';
 import { ChartModule } from 'primeng/chart';
 import { GroupActivityComponent } from './components/attendance-tracker/group-activity/group-activity.component';
+import { UserAttendanceService } from './sevices/user-attendance.service';
 
 @NgModule({
   declarations: [
@@ -128,6 +129,7 @@ import { GroupActivityComponent } from './components/attendance-tracker/group-ac
     SpinnerService,
     AuthService,
     UserService,
+    UserAttendanceService,
     TrainingPackageService,
     GroupService,
     FitProductService,
