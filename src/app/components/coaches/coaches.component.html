@@ -2,8 +2,7 @@
   <p-card *ngFor="let coach of globalService.coaches" class="coach-card">
     <ng-template pTemplate="header">
       <img class="personal-image w-9 sm:w-16rem xl:w-10rem h-9 sm:h-16rem xl:h-10rem block xl:block mx-auto"
-           [src]="coach.user['imageUrl']" [alt]="coach.fullName"
-           (error)="coach.user['imageUrl'] = 'assets/images/default-avatar.jpg'" />
+           [src]="coach.user['imageUrl'] || ''" [alt]="coach.fullName" defaultImg />
       <div class="title">{{ coach['fullName'] }}</div>
     </ng-template>
     <ng-template pTemplate="subtitle">

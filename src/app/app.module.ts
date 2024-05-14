@@ -64,6 +64,7 @@ import { PersonalActivitiesComponent } from './components/personal-activities/pe
 import { ChartModule } from 'primeng/chart';
 import { GroupActivityComponent } from './components/attendance-tracker/group-activity/group-activity.component';
 import { UserAttendanceService } from './sevices/user-attendance.service';
+import { DefaultImageDirective } from './directives/default-image.directive';
 
 @NgModule({
   declarations: [
@@ -121,6 +122,7 @@ import { UserAttendanceService } from './sevices/user-attendance.service';
     BadgeModule,
     CardModule,
     ChartModule,
+    DefaultImageDirective,
   ],
   providers: [
     GlobalService,

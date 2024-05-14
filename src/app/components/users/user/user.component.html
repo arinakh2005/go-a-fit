@@ -37,7 +37,7 @@
         </div>
       </div>
       <div class="flex flex-column align-items-center gap-3">
-        <img [src]="form.controls.imageUrl.value || 'assets/images/default-avatar.jpg'" alt="User Avatar" width="250px" />
+        <img [src]="form.controls.imageUrl.value || ''" defaultImg alt="User Avatar" width="250px" />
         <p-fileUpload *ngIf="userId"
                       chooseLabel="Обрати зображення"
                       mode="basic" accept="image/*"

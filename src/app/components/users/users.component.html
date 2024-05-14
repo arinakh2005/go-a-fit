@@ -59,7 +59,8 @@
           <p-tableCheckbox [value]="user"></p-tableCheckbox>
         </td>
         <td class="w-4rem">
-          <img [src]="user['imageUrl']" [alt]="user.username" width="50" height="50" class="border-circle" />
+          <img width="50" height="50" defaultImg class="border-circle"
+               [src]="user['imageUrl']" [alt]="user.username" [style.object-fit]="'cover'" />
         </td>
         <td class="w-14rem">{{ user['surname'] }}</td>
         <td class="w-12rem">{{ user['name'] }}</td>

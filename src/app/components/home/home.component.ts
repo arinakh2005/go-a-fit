@@ -25,9 +25,10 @@ export class HomeComponent implements OnInit {
     fitCentAmount: FormControl<number>,
   }> | null = null;
   public activeUserTrainingPackage?: ActiveUserTrainingPackage;
+  public readonly SystemRole = SystemRole;
 
   constructor(
-    private readonly userService: UserService,
+    public readonly userService: UserService,
     private readonly formBuilder: FormBuilder,
     private readonly trainingPackageService: TrainingPackageService,
   ) { }

@@ -12,6 +12,13 @@ export class GroupService {
     private readonly httpClient: HttpClient,
   ) { }
 
+  public getGroupsDetailed(): Observable<ResponseAPI<Group[]>> {
+    const url = `${environment.baseUrl}/groups`;
+    const params = new HttpParams().set('detailed', true)
+
+    return this.httpClient.get<ResponseAPI<Group[]>>(url, { params });
+  }
+
   public getCoachGroupsByUserId(id: string): Observable<ResponseAPI<Group[]>> {
     const url = `${environment.baseUrl}/groups/coach`;
     const params = new HttpParams().set('id', id)

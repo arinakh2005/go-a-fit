@@ -158,10 +158,10 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     scheduleItems.forEach((scheduleItem) => {
       const scheduleEvent: CalendarEvent = {
         extendedProps: {
-          id: scheduleItem.id,
-          coachId: scheduleItem.coachId,
-          athleteId: scheduleItem.athleteId,
-          groupId: scheduleItem.groupId,
+          ...scheduleItem,
+          coachId: scheduleItem.coachId || scheduleItem.coach?.id,
+          athleteId: scheduleItem.athleteId || scheduleItem.athlete?.id,
+          groupId: scheduleItem.groupId || scheduleItem.group?.id,
         },
         title: scheduleItem.title,
         start: new Date(scheduleItem.start),

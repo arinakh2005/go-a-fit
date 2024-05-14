@@ -9,7 +9,8 @@
              [ngClass]="{ 'border-top-1 surface-border': !first }"
         >
           <img class="w-9 sm:w-16rem xl:w-10rem block xl:block mx-auto border-round"
-               [src]="product['imageUrl']" [alt]="product.title" />
+               defaultImg="assets/images/default-product.png"
+               [src]="product['imageUrl'] || ''" [alt]="product.title" />
           <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
             <div class="flex flex-column align-items-center sm:align-items-start gap-3">
               <div class="text-2xl font-bold text-900">{{ product.title }}</div>
@@ -56,7 +57,9 @@
             ></p-tag>
           </div>
           <div class="flex flex-column align-items-center gap-3 py-5">
-            <img class="border-round h-10rem" [src]="product['imageUrl']" [alt]="product.title" />
+            <img class="border-round h-10rem"
+                 defaultImg="assets/images/default-product.png"
+                 [src]="product['imageUrl']" [alt]="product.title" />
             <div class="text-2xl font-bold">{{ product.title }}</div>
             <p-rating [ngModel]="product['rating']" [readonly]="true" [cancel]="false"></p-rating>
             <div class="text-l text-900"
